@@ -24,17 +24,26 @@
         {
             // scroll-section-1
             type: "scroll-anim",
-            height: 5,
+            height: 7,
             scrollHeight: 0,
             objs: {
                 container: document.querySelector("#scroll-section-1"),
-                titleBox: document.querySelector("#scroll-section-1 .title-box")
+                titleBox: document.querySelector("#scroll-section-1 .title-box"),
+                
+                canvas: document.querySelector("#intro-video-1"),
+                context: document.querySelector("#intro-video-1").getContext("2d"),
+                videoImages: []
             },
             values: {
                 titleBoxOpacityIn: [0, 1, { start: 0.5, end: 0.5 }],
                 titleBoxOpacityOut: [1, 0, { start: 0.9, end: 0.9 }],
                 titleBoxTranslateYIn: [200, 0, { start: 0.5, end: 0.6 }],
                 titleBoxTranslateYOut: [0, -200, { start: 0.8, end: 0.9 }],
+
+                videoImageCount: 397,
+                imageSequence: [0, 396],
+                canvasOpacityIn: [0, 1, { start: 0, end: 0.1 }],
+                canvasOpacityOut: [1, 0, { start: 0.8, end: 1 }]
             }
         },
         {
@@ -81,7 +90,27 @@
             sectionInfo[i].objs.container.style.height = `${sectionInfo[i].scrollHeight}px`
         }
 
+        let totalScrollHeight = 0
+        for (let i = 0; i < sectionInfo.length; i++) {
+            totalScrollHeight += sectionInfo[i].scrollHeight
+            if (totalScrollHeight >= pageYOffset) {
+                currentScene = i
+                break
+            }
+        }
+
         document.body.setAttribute('id', `show-scene-${currentSection}`)
+
+        sectionInfo[1].objs.canvas.style.transform = `translate3d(-50%, -50%, 0)`
+    }
+
+    function setCanvasImages() {
+        let imgElem
+        for (let i = 0; i < sectionInfo[1].values.videoImageCount; i++) {
+            imgElem = new Image()
+            imgElem.src = `./video/001/IMG${1001 + i}.JPG`
+            sectionInfo[1].objs.videoImages.push(imgElem)
+        }
     }
 
     function scrollLoop() {
@@ -126,6 +155,9 @@
                 }
                 break
             case 1:
+                let sequence = Math.round(calcValues(values.imageSequence, currentYOffset))
+                objs.context.drawImage(objs.videoImages[sequence], 0, 0)
+
                 if (scrollRatio <= 0.6) {
                     objs.titleBox.style.opacity = calcValues(values.titleBoxOpacityIn, currentYOffset)
                     objs.titleBox.style.transform = `translate3d(0, ${calcValues(values.titleBoxTranslateYIn, currentYOffset)}%, 0)`
@@ -133,6 +165,15 @@
                     objs.titleBox.style.opacity = calcValues(values.titleBoxOpacityOut, currentYOffset)
                     objs.titleBox.style.transform = `translate3d(0, ${calcValues(values.titleBoxTranslateYOut, currentYOffset)}%, 0)`
                 }
+
+                if (scrollRatio <= 0.1) {
+                    objs.canvas.style.opacity = calcValues(values.canvasOpacityIn, currentYOffset)
+                }
+
+                if (scrollRatio >= 0.8) {
+                    objs.canvas.style.opacity = calcValues(values.canvasOpacityOut, currentYOffset)
+                }
+                
                 break
             case 2:
                 console.log(`play 2 ${currentSection}`)
@@ -176,6 +217,7 @@
         return rv
     }
 
+    setCanvasImages()
     window.addEventListener('load', setLayout)
     window.addEventListener('scroll', () => {
         yOffset = window.pageYOffset

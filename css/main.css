@@ -38,7 +38,7 @@ a {
 
 .scroll-section {
     padding-top: 50vh;
-    border: 1px solid #ffffff;
+    /* border: 1px solid #ffffff; */
 }
 
 #scroll-section-0 .main-title {
@@ -171,6 +171,17 @@ a {
     height: 644px;
     border-radius: 20px 0px 0px 20px;
     border: solid 8px #2e3038;
+}
+
+.sticky-elem-canvas {
+    top: 0;
+    width: 100%;
+}
+
+.sticky-elem-canvas canvas {
+    position: fixed;
+    top: 50%;
+    left: 50%;
 }
 
 #scroll-section-4 .index-1 {
