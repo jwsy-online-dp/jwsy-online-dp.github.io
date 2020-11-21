@@ -108,7 +108,7 @@
         let imgElem
         for (let i = 0; i < sectionInfo[1].values.videoImageCount; i++) {
             imgElem = new Image()
-            imgElem.src = `./video/001/IMG${1001 + i}.JPG`
+            imgElem.src = `./video/001/IMG${1001 + i}.jpg`
             sectionInfo[1].objs.videoImages.push(imgElem)
         }
     }
