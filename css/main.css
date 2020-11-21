@@ -1,0 +1,176 @@
+@charset 'utf-8';
+
+@font-face {
+    font-family: 'SpoqaHanSans';
+    font-weight: normal;
+    src: url('../font/Spoqa\ Han\ Sans\ Regular.ttf') format('truetype')
+
+}
+
+@font-face {
+    font-family: 'SpoqaHanSans';
+    font-weight: bold;
+    src: url('../font/Spoqa\ Han\ Sans\ Bold.ttf') format('truetype')
+}
+
+@font-face {
+    font-family: 'Volte';
+    src: url('../font/Volte\ Semibold.otf')
+}
+
+html {
+    font-family: 'SpoqaHanSans', sans-serif;
+    font-size: 14px;
+}
+
+body {
+    overflow-x: hidden;
+    letter-spacing: -0.05em;
+}
+
+p {
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+}
+
+.scroll-section {
+    padding-top: 50vh;
+    border: 1px solid #ffffff;
+}
+
+#scroll-section-0 .main-title {
+    position: absolute;
+    top: 32vh;
+    left: 15%;
+}
+
+#scroll-section-0 small {
+    font-family: SpoqaHanSans;
+    font-size: 24px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -1.44px;
+    text-align: left;
+}
+
+#scroll-section-0 h1 {
+    padding-top: 2vh;
+    font-weight: bold;
+    font-family: Volte;
+    font-size: 140px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -4.2px;
+}
+
+.title-box {
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 720px;
+    height: 350px;
+    border-radius: 20px;
+    border: solid 3px #ffffff;
+}
+
+.title-box p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 60px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: -3.6px;
+}
+
+.flow-right {
+    top: 50%;
+    right: 20%;
+    transform: translate3d(20%, -50%, 0);
+}
+
+.flow-left {
+    top: 50%;
+    left: 10%;
+    transform: translate3d(-10%, -50%, 0);
+}
+
+.flow-text strong {
+    font-family: SpoqaHanSans;
+    font-size: 50px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: -3px;
+}
+
+.flow-text p {
+    margin-top: 40px;
+    font-family: SpoqaHanSans;
+    font-size: 24px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -1.2px;
+    text-align: left;
+}
+
+.sticky-elem {
+    display: none;
+    position: fixed;
+}
+
+.left-mock-screen {
+    position: fixed;
+    top: 50%;
+    left: 20%;
+    transform: translate3d(-20%, -50%, 0);
+    width: 300px;
+    height: 600px;
+    border-radius: 20px;
+    border: solid 3px #ffffff;
+}
+
+.flow-title {
+    width: 100%;
+    font-family: SpoqaHanSans;
+    font-size: 50px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: -3px;
+}
+
+#scroll-section-4 .index-1 {
+    color: #ee2c49;
+}
+
+#scroll-section-4 .index-2 {
+    color: #a4e21f;
+}
+
+#scroll-section-4 .index-3 {
+    color: #11a8fd;
+}
+
+body#show-scene-0 #scroll-section-0 .sticky-elem,
+body#show-scene-1 #scroll-section-1 .sticky-elem,
+body#show-scene-2 #scroll-section-2 .sticky-elem,
+body#show-scene-3 #scroll-section-3 .sticky-elem,
+body#show-scene-3 #scroll-section-4 .sticky-elem,
+body#show-scene-3 #scroll-section-5 .sticky-elem {
+    display: block;
+}
