@@ -13,8 +13,12 @@
             scrollHeight: 0,
             objs: {
                 container: document.querySelector("#scroll-section-0"),
-                textFirst: document.querySelector("#scroll-section-0 .dimed-text .first"),
-                textSecond: document.querySelector("#scroll-section-0 .dimed-text .second"),
+                textFirst: document.querySelector("#scroll-section-0 .dimed-text.first"),
+                textSecond: document.querySelector("#scroll-section-0 .dimed-text.second"),
+            },
+            values: {
+                textFirst: [1, 0, { start: 0.1, end: 0.4 }],
+                textSecond: [1, 0, { start: 0.3, end: 0.5 }],
             }
         },
         {
@@ -24,6 +28,13 @@
             scrollHeight: 0,
             objs: {
                 container: document.querySelector("#scroll-section-1"),
+                titleBox: document.querySelector("#scroll-section-1 .title-box")
+            },
+            values: {
+                titleBoxOpacityIn: [0, 1, { start: 0.5, end: 0.5 }],
+                titleBoxOpacityOut: [1, 0, { start: 0.9, end: 0.9 }],
+                titleBoxTranslateYIn: [200, 0, { start: 0.5, end: 0.6 }],
+                titleBoxTranslateYOut: [0, -200, { start: 0.8, end: 0.9 }],
             }
         },
         {
@@ -107,12 +118,21 @@
         const scrollHeight = sectionInfo[currentSection].scrollHeight
         const scrollRatio = currentYOffset / scrollHeight
 
-        switch(currentSection) {
+        switch (currentSection) {
             case 0:
-                console.log(`play 0 ${currentSection}`)
+                if (scrollRatio <= 0.6) {
+                    objs.textFirst.style.opacity = calcValues(values.textFirst, currentYOffset)
+                    objs.textSecond.style.opacity = calcValues(values.textSecond, currentYOffset)
+                }
                 break
             case 1:
-                console.log(`play 1 ${currentSection}`)
+                if (scrollRatio <= 0.6) {
+                    objs.titleBox.style.opacity = calcValues(values.titleBoxOpacityIn, currentYOffset)
+                    objs.titleBox.style.transform = `translate3d(0, ${calcValues(values.titleBoxTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    objs.titleBox.style.opacity = calcValues(values.titleBoxOpacityOut, currentYOffset)
+                    objs.titleBox.style.transform = `translate3d(0, ${calcValues(values.titleBoxTranslateYOut, currentYOffset)}%, 0)`
+                }
                 break
             case 2:
                 console.log(`play 2 ${currentSection}`)
@@ -127,6 +147,33 @@
                 console.log(`play 5 ${currentSection}`)
                 break
         }
+    }
+
+
+    function calcValues(values, currentYOffset) {
+        const scrollHeight = sectionInfo[currentSection].scrollHeight
+        const scrollRatio = currentYOffset / scrollHeight
+
+        let rv
+        if (values.length === 3) {
+            const elemScrollStart = values[2].start * scrollHeight
+            const elemScrollEnd = values[2].end * scrollHeight
+            const elemScrollHeight = elemScrollEnd - elemScrollStart
+            const elemScrollRatio = (currentYOffset - elemScrollStart) / elemScrollHeight
+
+            if (currentYOffset >= elemScrollStart && currentYOffset <= elemScrollEnd) {
+                rv = elemScrollRatio * (values[1] - values[0]) + values[0]
+            } else if (currentYOffset < elemScrollStart) {
+                rv = values[0]
+            } else if (currentYOffset > elemScrollEnd) {
+                rv = values[1]
+            }
+
+        } else {
+            rv = scrollRatio * (values[1] - values[0]) + values[0]
+        }
+
+        return rv
     }
 
     window.addEventListener('load', setLayout)
