@@ -144,7 +144,9 @@ a {
 }
 
 .flow-title {
-    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
     font-family: SpoqaHanSans;
     font-size: 50px;
     font-weight: bold;
@@ -170,7 +172,7 @@ body#show-scene-0 #scroll-section-0 .sticky-elem,
 body#show-scene-1 #scroll-section-1 .sticky-elem,
 body#show-scene-2 #scroll-section-2 .sticky-elem,
 body#show-scene-3 #scroll-section-3 .sticky-elem,
-body#show-scene-3 #scroll-section-4 .sticky-elem,
-body#show-scene-3 #scroll-section-5 .sticky-elem {
+body#show-scene-4 #scroll-section-4 .sticky-elem,
+body#show-scene-5 #scroll-section-5 .sticky-elem {
     display: block;
 }
