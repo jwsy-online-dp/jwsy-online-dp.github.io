@@ -166,6 +166,7 @@ a {
     position: fixed;
     left: 0;
     width: 100%;
+    z-index: 5;
 }
 
 .scroll-elem {
@@ -220,6 +221,17 @@ a {
 }
 
 .sticky-elem-canvas canvas {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+
+.sticky-elem-video {
+    top: 0;
+    /* width: 100%; */
+}
+
+.sticky-elem-canvas video {
     position: fixed;
     top: 50%;
     left: 50%;
