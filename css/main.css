@@ -38,13 +38,14 @@ a {
 
 .scroll-section {
     padding-top: 50vh;
-    border: 1px solid #ffffff;
+    /* border: 1px solid #ffffff; */
 }
 
 #scroll-section-0 .main-title {
-    position: absolute;
-    top: 32vh;
-    left: 15%;
+    position: relative;
+    top: -15vh;
+    z-index: 5;
+    text-align: center;
 }
 
 #scroll-section-0 small {
@@ -74,6 +75,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0;
 	top: 40vh;
     margin: 5px 0;
     height: 3em;
@@ -86,6 +88,13 @@ a {
     font-style: normal;
     line-height: 1.33;
     letter-spacing: -3.6px;
+}
+
+#scroll-section-4 .flow-title {
+    font-size: 50px;
+    line-height: 1.4;
+    letter-spacing: -3px;
+    opacity: 0;
 }
 
 .center-wrapper {
@@ -183,21 +192,6 @@ a {
     height: 600px;
     border-radius: 20px;
     border: solid 3px #ffffff;
-}
-
-.flow-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-	top: 40vh;
-    width: 100%;
-    font-family: SpoqaHanSans;
-    font-size: 50px;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.4;
-    letter-spacing: -3px;
 }
 
 .right-mock-screen {

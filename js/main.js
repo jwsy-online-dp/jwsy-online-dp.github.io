@@ -108,14 +108,14 @@
                 leftMockScreenOpacityOut: [1, 0, { start: 0.9, end: 1 }],
                 leftMockScreenTranslateYIn: [200, 0, { start: 0.1, end: 0.2 }],
 
-                flowTextOneTranslateYIn: [400, 0, {start: 0.15, end: 0.2}],
-                flowTextOneTranslateYOut: [0, -400, {start: 0.2, end: 0.3}],
+                flowTextOneTranslateYIn: [400, 0, { start: 0.15, end: 0.2 }],
+                flowTextOneTranslateYOut: [0, -400, { start: 0.2, end: 0.3 }],
 
-                flowTextTwoTranslateYIn:  [400, 0, {start: 0.4, end: 0.5}],
-                flowTextTwoTranslateYOut:  [0, -400, {start: 0.5, end: 0.6}],
+                flowTextTwoTranslateYIn: [400, 0, { start: 0.4, end: 0.5 }],
+                flowTextTwoTranslateYOut: [0, -400, { start: 0.5, end: 0.6 }],
 
-                flowTextThreeTranslateYIn:  [400, 0, {start: 0.7, end: 0.8}],
-                flowTextThreeTranslateYOut:  [0, -400, {start: 0.8, end: 0.9}],
+                flowTextThreeTranslateYIn: [400, 0, { start: 0.7, end: 0.8 }],
+                flowTextThreeTranslateYOut: [0, -400, { start: 0.8, end: 0.9 }],
             }
         },
         {
@@ -125,6 +125,17 @@
             scrollHeight: 0,
             objs: {
                 container: document.querySelector("#scroll-section-4"),
+
+                flowTitle: document.querySelector("#scroll-section-4 .flow-title")
+            },
+            values: {
+                flowTitleOpacityIn: [0, 1, { start: 0, end: 0 }],
+                flowTitleOpacityOut: [1, 0, { start: 0.5, end: 0.5 }],
+
+                flowTitleTranslateYIn: [400, 0, { start: 0, end: 0.3 }],
+                flowTitleTranslateYOut: [0, -400, { start: 0.3, end: 0.5 }],
+
+                flowTitleScaleIn: [0.5, 1, { start: 0, end: 0.3 }],
             }
         },
         {
@@ -134,6 +145,26 @@
             scrollHeight: 0,
             objs: {
                 container: document.querySelector("#scroll-section-5"),
+
+                rightMockScreen: document.querySelector("#scroll-section-5 .right-mock-screen"),
+
+                flowTextOne: document.querySelector("#scroll-section-5 .flow-text.one"),
+                flowTextTwo: document.querySelector("#scroll-section-5 .flow-text.two"),
+                flowTextThree: document.querySelector("#scroll-section-5 .flow-text.three")
+            },
+            values: {
+                rightMockScreenOpacityIn: [0, 1, { start: 0.1, end: 0.2 }],
+                rightMockScreenOpacityOut: [1, 0, { start: 0.9, end: 1 }],
+                rightMockScreenTranslateYIn: [200, 0, { start: 0.1, end: 0.2 }],
+
+                flowTextOneTranslateYIn: [400, 0, { start: 0.15, end: 0.2 }],
+                flowTextOneTranslateYOut: [0, -400, { start: 0.2, end: 0.3 }],
+
+                flowTextTwoTranslateYIn: [400, 0, { start: 0.4, end: 0.5 }],
+                flowTextTwoTranslateYOut: [0, -400, { start: 0.5, end: 0.6 }],
+
+                flowTextThreeTranslateYIn: [400, 0, { start: 0.7, end: 0.8 }],
+                flowTextThreeTranslateYOut: [0, -400, { start: 0.8, end: 0.9 }],
             }
         },
         {
@@ -143,6 +174,17 @@
             scrollHeight: 0,
             objs: {
                 container: document.querySelector("#scroll-section-6"),
+
+                flowTitle: document.querySelector("#scroll-section-6 .flow-title")
+            },
+            values: {
+                flowTitleOpacityIn: [0, 1, { start: 0, end: 0 }],
+                flowTitleOpacityOut: [1, 0, { start: 0.5, end: 0.5 }],
+
+                flowTitleTranslateYIn: [400, 0, { start: 0, end: 0.3 }],
+                flowTitleTranslateYOut: [0, -400, { start: 0.3, end: 0.5 }],
+
+                flowTitleScaleIn: [0.5, 1, { start: 0, end: 0.3 }],
             }
         },
     ]
@@ -223,6 +265,7 @@
                     objs.textSecond.style.opacity = calcValues(values.textSecond, currentYOffset)
                 }
                 break
+
             case 1:
                 let sequence = Math.round(calcValues(values.imageSequence, currentYOffset))
                 objs.context.drawImage(objs.videoImages[sequence], 0, 0)
@@ -282,6 +325,7 @@
                 }
 
                 break
+
             case 2:
                 objs.imageCanvasContext.drawImage(objs.imageCanvasImage, 0, 0)
 
@@ -297,6 +341,7 @@
                     objs.titleBox.style.transform = `translate3d(0, ${calcValues(values.titleBoxTranslateYOut, currentYOffset)}%, 0)`
                 }
                 break
+
             case 3:
                 if (scrollRatio <= 0.5) {
                     objs.leftMockScreen.style.opacity = calcValues(values.leftMockScreenOpacityIn, currentYOffset)
@@ -323,11 +368,53 @@
                     objs.flowTextThree.style.transform = `translate3d(0, ${calcValues(values.flowTextThreeTranslateYOut, currentYOffset)}%, 0)`
                 }
                 break
+
             case 4:
-                console.log(`play 4 ${currentSection}`)
+                if (scrollRatio <= 0.3) {
+                    objs.flowTitle.style.opacity = calcValues(values.flowTitleOpacityIn, currentYOffset)
+                    objs.flowTitle.style.transform = `translate3d(0, ${calcValues(values.flowTitleTranslateYIn, currentYOffset)}%, 0) scale(${calcValues(values.flowTitleScaleIn, currentYOffset)})`
+                } else {
+                    objs.flowTitle.style.opacity = calcValues(values.flowTitleOpacityOut, currentYOffset)
+                    objs.flowTitle.style.transform = `translate3d(0, ${calcValues(values.flowTitleTranslateYOut, currentYOffset)}%, 0)`
+                }
+
                 break
             case 5:
-                console.log(`play 5 ${currentSection}`)
+                console.log(objs.flowTextOne)
+                if (scrollRatio <= 0.5) {
+                    objs.rightMockScreen.style.opacity = calcValues(values.rightMockScreenOpacityIn, currentYOffset)
+                    objs.rightMockScreen.style.transform = `translate3d(0, ${calcValues(values.rightMockScreenTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    objs.rightMockScreen.style.opacity = calcValues(values.rightMockScreenOpacityOut, currentYOffset)
+                }
+
+                if (scrollRatio <= 0.2) {
+                    objs.flowTextOne.style.transform = `translate3d(0, ${calcValues(values.flowTextOneTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    objs.flowTextOne.style.transform = `translate3d(0, ${calcValues(values.flowTextOneTranslateYOut, currentYOffset)}%, 0)`
+                }
+
+                if (scrollRatio <= 0.5) {
+                    objs.flowTextTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    objs.flowTextTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYOut, currentYOffset)}%, 0)`
+                }
+
+                if (scrollRatio <= 0.8) {
+                    objs.flowTextThree.style.transform = `translate3d(0, ${calcValues(values.flowTextThreeTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    objs.flowTextThree.style.transform = `translate3d(0, ${calcValues(values.flowTextThreeTranslateYOut, currentYOffset)}%, 0)`
+                }
+                break
+
+            case 6:
+                if (scrollRatio <= 0.3) {
+                    objs.flowTitle.style.opacity = calcValues(values.flowTitleOpacityIn, currentYOffset)
+                    objs.flowTitle.style.transform = `translate3d(0, ${calcValues(values.flowTitleTranslateYIn, currentYOffset)}%, 0) scale(${calcValues(values.flowTitleScaleIn, currentYOffset)})`
+                } else {
+                    objs.flowTitle.style.opacity = calcValues(values.flowTitleOpacityOut, currentYOffset)
+                    objs.flowTitle.style.transform = `translate3d(0, ${calcValues(values.flowTitleTranslateYOut, currentYOffset)}%, 0)`
+                }
                 break
         }
     }
