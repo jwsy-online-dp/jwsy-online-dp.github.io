@@ -172,7 +172,11 @@
 
                 flowTextOne: document.querySelector("#scroll-section-5 .flow-text.one"),
                 flowTextTwo: document.querySelector("#scroll-section-5 .flow-text.two"),
-                flowTextThree: document.querySelector("#scroll-section-5 .flow-text.three")
+                flowTextThree: document.querySelector("#scroll-section-5 .flow-text.three"),
+
+                rightMockVideoOne: document.querySelector("#scroll-section-5 .right-mock-screen-video.one"),
+                rightMockVideoTwo: document.querySelector("#scroll-section-5 .right-mock-screen-video.two"),
+                rightMockVideoThree: document.querySelector("#scroll-section-5 .right-mock-screen-video.three"),
             },
             values: {
                 rightMockScreenOpacityIn: [0, 1, { start: 0.1, end: 0.2 }],
@@ -187,6 +191,15 @@
 
                 flowTextThreeTranslateYIn: [400, 0, { start: 0.7, end: 0.8 }],
                 flowTextThreeTranslateYOut: [0, -400, { start: 0.8, end: 0.9 }],
+
+                rightMockVideoOneOpacityIn: [0, 1, { start: 0.15, end: 0.2 }],
+                rightMockVideoOneOpacityOut: [1, 0, { start: 0.2, end: 0.3 }],
+
+                rightMockVideoTwoOpacityIn: [0, 1, { start: 0.4, end: 0.5 }],
+                rightMockVideoTwoOpacityOut: [1, 0, { start: 0.5, end: 0.6 }],
+                
+                rightMockVideoThreeOpacityIn: [0, 1, { start: 0.7, end: 0.8 }],
+                rightMockVideoThreeOpacityOut: [1, 0, { start: 0.8, end: 0.9 }],
             }
         },
         {
@@ -211,7 +224,15 @@
         },
     ]
 
+    function scrollToTop() {
+        sectionInfo[0].objs.textFirst.style.opacity = 1
+        sectionInfo[0].objs.textSecond.style.opacity = 1
+        window.scrollTo(0, 0);
+    }
+
     function setLayout() {
+        // scrollToTop()
+
         for (let i = 0; i < sectionInfo.length; i++) {
             sectionInfo[i].scrollHeight = sectionInfo[i].height * window.innerHeight
             sectionInfo[i].objs.container.style.height = `${sectionInfo[i].scrollHeight}px`
@@ -409,14 +430,7 @@
                     objs.flowTitle.style.transform = `translate3d(0, ${calcValues(values.flowTitleTranslateYOut, currentYOffset)}%, 0)`
                 }
 
-                if (0.4 <= scrollRatio && scrollRatio < 0.5) {
-                    if (scrollDirectionUp) {
-                        objs.backgroundVideo.pause()
-                        objs.backgroundVideo.currentTime = 0
-                    } else {
-                        objs.backgroundVideo.play()
-                    }
-                }
+                rangeVideoLoop(0.4, 1, objs.backgroundVideo, scrollRatio)
 
                 if (scrollRatio <= 0.7) {
                     objs.backgroundVideo.style.opacity = calcValues(values.backgroundVideoOpacityIn, currentYOffset)
@@ -424,15 +438,6 @@
                 } else {
                     objs.backgroundVideo.style.opacity = calcValues(values.backgroundVideoOpacityOut, currentYOffset)
                     objs.backgroundVideo.style.transform = `translate3d(0, ${calcValues(values.backgroundVideoTranslateYOut, currentYOffset)}%, 0) scale(${calcValues(values.flowTitleScaleIn, currentYOffset)})` 
-                }
-
-                if (0.9 <= scrollRatio && scrollRatio < 1) {
-                    if (scrollDirectionUp) {
-                        objs.backgroundVideo.play()
-                    } else {
-                        objs.backgroundVideo.pause()
-                        objs.backgroundVideo.currentTime = 0
-                    }
                 }
 
                 break
@@ -444,22 +449,32 @@
                     objs.rightMockScreen.style.opacity = calcValues(values.rightMockScreenOpacityOut, currentYOffset)
                 }
 
+                rangeVideoLoop(0.1, 0.35, objs.rightMockVideoOne, scrollRatio)
+                rangeVideoLoop(0.35, 0.65, objs.rightMockVideoOne, scrollRatio)
+                rangeVideoLoop(0.65, 0.95, objs.rightMockVideoOne, scrollRatio)
+
                 if (scrollRatio <= 0.2) {
                     objs.flowTextOne.style.transform = `translate3d(0, ${calcValues(values.flowTextOneTranslateYIn, currentYOffset)}%, 0)`
+                    objs.rightMockVideoOne.style.opacity = calcValues(values.rightMockVideoOneOpacityIn, currentYOffset)
                 } else {
                     objs.flowTextOne.style.transform = `translate3d(0, ${calcValues(values.flowTextOneTranslateYOut, currentYOffset)}%, 0)`
+                    objs.rightMockVideoOne.style.opacity = calcValues(values.rightMockVideoOneOpacityOut, currentYOffset)
                 }
-
+                
                 if (scrollRatio <= 0.5) {
                     objs.flowTextTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYIn, currentYOffset)}%, 0)`
+                    objs.rightMockVideoTwo.style.opacity = calcValues(values.rightMockVideoTwoOpacityIn, currentYOffset)
                 } else {
                     objs.flowTextTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYOut, currentYOffset)}%, 0)`
+                    objs.rightMockVideoTwo.style.opacity = calcValues(values.rightMockVideoTwoOpacityOut, currentYOffset)
                 }
-
+                
                 if (scrollRatio <= 0.8) {
                     objs.flowTextThree.style.transform = `translate3d(0, ${calcValues(values.flowTextThreeTranslateYIn, currentYOffset)}%, 0)`
+                    objs.rightMockVideoThree.style.opacity = calcValues(values.rightMockVideoThreeOpacityIn, currentYOffset)
                 } else {
                     objs.flowTextThree.style.transform = `translate3d(0, ${calcValues(values.flowTextThreeTranslateYOut, currentYOffset)}%, 0)`
+                    objs.rightMockVideoThree.style.opacity = calcValues(values.rightMockVideoThreeOpacityOut, currentYOffset)
                 }
                 break
 
@@ -475,6 +490,25 @@
         }
     }
 
+    function rangeVideoLoop(rangeStart, rangeEnd, video, scrollRatio) {
+        if (rangeStart <= scrollRatio && scrollRatio < rangeStart + 0.02) {
+            if (scrollDirectionUp) {
+                video.pause()
+                video.currentTime = 0
+            } else {
+                video.play()
+            }
+        }
+
+        if (rangeEnd - 0.02 <= scrollRatio && scrollRatio < rangeEnd) {
+            if (scrollDirectionUp) {
+                video.play()
+            } else {
+                video.pause()
+                video.currentTime = 0
+            }
+        }
+    }
 
     function calcValues(values, currentYOffset) {
         const scrollHeight = sectionInfo[currentSection].scrollHeight
