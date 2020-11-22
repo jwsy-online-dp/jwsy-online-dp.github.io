@@ -102,6 +102,10 @@
                 flowTextOne: document.querySelector("#scroll-section-3 .flow-text.one"),
                 flowTextTwo: document.querySelector("#scroll-section-3 .flow-text.two"),
                 flowTextThree: document.querySelector("#scroll-section-3 .flow-text.three"),
+
+                leftMockImageOne: document.querySelector("#scroll-section-3 .left-mock-screen-video.one"),
+                leftMockImageTwo: document.querySelector("#scroll-section-3 .left-mock-screen-video.two"),
+                leftMockImageThree: document.querySelector("#scroll-section-3 .left-mock-screen-video.three"),
             },
             values: {
                 leftMockScreenOpacityIn: [0, 1, { start: 0.1, end: 0.1 }],
@@ -116,6 +120,15 @@
 
                 flowTextThreeTranslateYIn: [400, 0, { start: 0.7, end: 0.8 }],
                 flowTextThreeTranslateYOut: [0, -400, { start: 0.8, end: 0.9 }],
+
+                leftMockImageOneOpacityIn: [0, 1, { start: 0.15, end: 0.2}],
+                leftMockImageOneOpacityOut: [1, 0, { start: 0.2, end: 0.3 }],
+
+                leftMockImageTwoOpacityIn: [0, 1, { start: 0.4, end: 0.5 }],
+                leftMockImageTwoOpacityOut: [1, 0, { start: 0.5, end: 0.6 }],
+
+                leftMockImageThreeOpacityIn: [0, 1, { start: 0.7, end: 0.8 }],
+                leftMockImageThreeOpacityOut: [1, 0, { start: 0.9, end: 1 }],
             }
         },
         {
@@ -352,20 +365,26 @@
 
                 if (scrollRatio <= 0.2) {
                     objs.flowTextOne.style.transform = `translate3d(0, ${calcValues(values.flowTextOneTranslateYIn, currentYOffset)}%, 0)`
+                    objs.leftMockImageOne.style.opacity =  calcValues(values.leftMockImageOneOpacityIn, currentYOffset)
                 } else {
                     objs.flowTextOne.style.transform = `translate3d(0, ${calcValues(values.flowTextOneTranslateYOut, currentYOffset)}%, 0)`
+                    objs.leftMockImageOne.style.opacity =  calcValues(values.leftMockImageOneOpacityOut, currentYOffset)
                 }
 
                 if (scrollRatio <= 0.5) {
                     objs.flowTextTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYIn, currentYOffset)}%, 0)`
+                    objs.leftMockImageTwo.style.opacity =  calcValues(values.leftMockImageTwoOpacityIn, currentYOffset)
                 } else {
                     objs.flowTextTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYOut, currentYOffset)}%, 0)`
+                    objs.leftMockImageTwo.style.opacity =  calcValues(values.leftMockImageTwoOpacityOut, currentYOffset)
                 }
 
                 if (scrollRatio <= 0.8) {
                     objs.flowTextThree.style.transform = `translate3d(0, ${calcValues(values.flowTextThreeTranslateYIn, currentYOffset)}%, 0)`
+                    objs.leftMockImageThree.style.opacity =  calcValues(values.leftMockImageThreeOpacityIn, currentYOffset)
                 } else {
                     objs.flowTextThree.style.transform = `translate3d(0, ${calcValues(values.flowTextThreeTranslateYOut, currentYOffset)}%, 0)`
+                    objs.leftMockImageThree.style.opacity =  calcValues(values.leftMockScreenOpacityOut, currentYOffset)
                 }
                 break
 
@@ -380,7 +399,6 @@
 
                 break
             case 5:
-                console.log(objs.flowTextOne)
                 if (scrollRatio <= 0.5) {
                     objs.rightMockScreen.style.opacity = calcValues(values.rightMockScreenOpacityIn, currentYOffset)
                     objs.rightMockScreen.style.transform = `translate3d(0, ${calcValues(values.rightMockScreenTranslateYIn, currentYOffset)}%, 0)`
