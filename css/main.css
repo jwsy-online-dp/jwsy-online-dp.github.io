@@ -3,14 +3,14 @@
 @font-face {
     font-family: 'SpoqaHanSans';
     font-weight: normal;
-    src: url('../font/Spoqa\ Han\ Sans\ Regular.ttf') format('truetype')
+    src: url('../font/NotoSansCJKkr-Regular.otf') format('truetype')
 
 }
 
 @font-face {
     font-family: 'SpoqaHanSans';
     font-weight: bold;
-    src: url('../font/Spoqa\ Han\ Sans\ Bold.ttf') format('truetype')
+    src: url('../font/NotoSansCJKkr-Black.otf') format('truetype')
 }
 
 @font-face {
