@@ -24,26 +24,70 @@
         {
             // scroll-section-1
             type: "scroll-anim",
-            height: 7,
+            height: 3,
             scrollHeight: 0,
             objs: {
                 container: document.querySelector("#scroll-section-1"),
-                titleBox: document.querySelector("#scroll-section-1 .title-box"),
-                
-                canvas: document.querySelector("#intro-video-1"),
-                context: document.querySelector("#intro-video-1").getContext("2d"),
-                videoImages: []
+                messageOne: document.querySelector('#scroll-section-1 .main-message.one'),
+                messageTwo: document.querySelector('#scroll-section-1 .main-message.two'),
+                messageThree: document.querySelector('#scroll-section-1 .main-message.three'),
+                messageFour: document.querySelector('#scroll-section-1 .main-message.four'),
+                messageFive: document.querySelector('#scroll-section-1 .main-message.five'),
+
+                canvas: document.querySelector("#video-canvas-1"),
+                context: document.querySelector("#video-canvas-1").getContext("2d"),
+                videoImages: [],
             },
             values: {
-                titleBoxOpacityIn: [0, 1, { start: 0.5, end: 0.5 }],
-                titleBoxOpacityOut: [1, 0, { start: 0.9, end: 0.9 }],
-                titleBoxTranslateYIn: [200, 0, { start: 0.5, end: 0.6 }],
-                titleBoxTranslateYOut: [0, -200, { start: 0.8, end: 0.9 }],
+                messageOneOpacityIn: [0, 1, { start: 0.1, end: 0.18}],
+                messageTwoOpacityIn: [0, 1, { start: 0.26, end: 0.34}],
+                messageThreeOpacityIn: [0, 1, { start: 0.42, end: 0.5 }],
+                messageFourOpacityIn: [0, 1, { start: 0.58, end: 0.65}],
+                messageFiveOpacityIn: [0, 1, { start: 0.72, end: 0.81}],
 
-                videoImageCount: 397,
-                imageSequence: [0, 396],
+                messageOneOpacityOut: [1, 0, { start: 0.18, end: 0.26}],
+                messageTwoOpacityOut: [1, 0, { start: 0.34, end: 0.42}],
+                messageThreeOpacityOut: [1, 0, { start: 0.5, end: 0.58}],
+                messageFourOpacityOut: [1, 0, { start: 0.65, end: 0.72}],
+                messageFiveOpacityOut: [1, 0, { start: 0.81, end: 0.9}],
+
+                messageOneTranslateYIn: [20, 0, { start: 0.1, end: 0.18}],
+                messageTwoTranslateYIn: [20, 0, { start: 0.26, end: 0.34}],
+                messageThreeTranslateYIn: [20, 0, { start: 0.42, end: 0.5 }],
+                messageFourTranslateYIn: [20, 0, { start: 0.58, end: 0.65}],
+                messageFiveTranslateYIn: [20, 0, { start: 0.72, end: 0.81}],
+
+                messageOneTranslateYOut: [0, -20, { start: 0.18, end: 0.26}],
+                messageTwoTranslateYOut: [0, -20, { start: 0.34, end: 0.42}],
+                messageThreeTranslateYOut: [0, -20, { start: 0.5, end: 0.58}],
+                messageFourTranslateYOut: [0, -20, { start: 0.65, end: 0.72}],
+                messageFiveTranslateYOut: [0, -20, { start: 0.81, end: 0.9}],
+
+                videoImageCount: 338,
+                imageSequence: [0, 337],
                 canvasOpacityIn: [0, 1, { start: 0, end: 0.1 }],
-                canvasOpacityOut: [1, 0, { start: 0.8, end: 1 }]
+            }
+        },
+        {
+            // scroll-section-1
+            type: "scroll-anim",
+            height: 3,
+            scrollHeight: 0,
+            objs: {
+                container: document.querySelector("#scroll-section-2"),
+                titleBox: document.querySelector("#scroll-section-2 .title-box"),
+
+                imageCanvas: document.querySelector("#image-canvas-1"),
+                imageCanvasContext: document.querySelector("#image-canvas-1").getContext("2d"),
+                imageCanvasImage: null
+            },
+            values: {
+                titleBoxOpacityIn: [0, 1, { start: 0.1, end: 0.1 }],
+                titleBoxOpacityOut: [1, 0, { start: 0.9, end: 0.9 }],
+                titleBoxTranslateYIn: [200, 0, { start: 0.1, end: 0.4 }],
+                titleBoxTranslateYOut: [0, -200, { start: 0.7, end: 0.9 }],
+
+                imageCanvasOpacityOut: [1, 0, { start: 0.4, end: 0.7 }]
             }
         },
         {
@@ -52,7 +96,7 @@
             height: 5,
             scrollHeight: 0,
             objs: {
-                container: document.querySelector("#scroll-section-2"),
+                container: document.querySelector("#scroll-section-3"),
             }
         },
         {
@@ -61,7 +105,7 @@
             height: 3,
             scrollHeight: 0,
             objs: {
-                container: document.querySelector("#scroll-section-3"),
+                container: document.querySelector("#scroll-section-4"),
             }
         },
         {
@@ -70,7 +114,7 @@
             height: 5,
             scrollHeight: 0,
             objs: {
-                container: document.querySelector("#scroll-section-4"),
+                container: document.querySelector("#scroll-section-5"),
             }
         },
         {
@@ -79,7 +123,7 @@
             height: 5,
             scrollHeight: 0,
             objs: {
-                container: document.querySelector("#scroll-section-5"),
+                container: document.querySelector("#scroll-section-6"),
             }
         },
     ]
@@ -101,7 +145,9 @@
 
         document.body.setAttribute('id', `show-scene-${currentSection}`)
 
-        sectionInfo[1].objs.canvas.style.transform = `translate3d(-50%, -50%, 0)`
+        const heightRatio = window.innerHeight / 1080
+        sectionInfo[1].objs.canvas.style.transform = `translate3d(-50%, -50%, 0) scale(${heightRatio})`
+        sectionInfo[2].objs.imageCanvas.style.transform = `translate3d(-50%, -50%, 0) scale(${heightRatio})`
     }
 
     function setCanvasImages() {
@@ -111,6 +157,10 @@
             imgElem.src = `./video/001/IMG${1001 + i}.jpg`
             sectionInfo[1].objs.videoImages.push(imgElem)
         }
+
+        imgElem = new Image()
+        imgElem.src = `./video/001/IMG1338.jpg`
+        sectionInfo[2].objs.imageCanvasImage = imgElem
     }
 
     function scrollLoop() {
@@ -158,25 +208,75 @@
                 let sequence = Math.round(calcValues(values.imageSequence, currentYOffset))
                 objs.context.drawImage(objs.videoImages[sequence], 0, 0)
 
-                if (scrollRatio <= 0.6) {
+                if (scrollRatio <= 0.1) {
+                    objs.canvas.style.opacity = calcValues(values.canvasOpacityIn, currentYOffset)
+                }
+
+                if (scrollRatio <= 0.18) {
+                    // in
+                    objs.messageOne.style.opacity = calcValues(values.messageOneOpacityIn, currentYOffset)
+                    objs.messageOne.style.transform = `translate3d(0, ${calcValues(values.messageOneTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    // out
+                    objs.messageOne.style.opacity = calcValues(values.messageOneOpacityOut, currentYOffset)
+                    objs.messageOne.style.transform = `translate3d(0, ${calcValues(values.messageOneTranslateYOut, currentYOffset)}%, 0)`
+                }
+
+                if (scrollRatio <= 0.34) {
+                    // in
+                    objs.messageTwo.style.opacity = calcValues(values.messageTwoOpacityIn, currentYOffset)
+                    objs.messageTwo.style.transform = `translate3d(0, ${calcValues(values.messageTwoTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    // out
+                    objs.messageTwo.style.opacity = calcValues(values.messageTwoOpacityOut, currentYOffset)
+                    objs.messageTwo.style.transform = `translate3d(0, ${calcValues(values.messageTwoTranslateYOut, currentYOffset)}%, 0)`
+                }
+
+                if (scrollRatio <= 0.5) {
+                    // in
+                    objs.messageThree.style.opacity = calcValues(values.messageThreeOpacityIn, currentYOffset)
+                    objs.messageThree.style.transform = `translate3d(0, ${calcValues(values.messageThreeTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    // out
+                    objs.messageThree.style.opacity = calcValues(values.messageThreeOpacityOut, currentYOffset)
+                    objs.messageThree.style.transform = `translate3d(0, ${calcValues(values.messageThreeTranslateYOut, currentYOffset)}%, 0)`
+                }
+
+                if (scrollRatio <= 0.65) {
+                    // in
+                    objs.messageFour.style.opacity = calcValues(values.messageFourOpacityIn, currentYOffset)
+                    objs.messageFour.style.transform = `translate3d(0, ${calcValues(values.messageFourTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    // out
+                    objs.messageFour.style.opacity = calcValues(values.messageFourOpacityOut, currentYOffset)
+                    objs.messageFour.style.transform = `translate3d(0, ${calcValues(values.messageFourTranslateYOut, currentYOffset)}%, 0)`
+                }
+
+                if (scrollRatio <= 0.81) {
+                    // in
+                    objs.messageFive.style.opacity = calcValues(values.messageFiveOpacityIn, currentYOffset)
+                    objs.messageFive.style.transform = `translate3d(0, ${calcValues(values.messageFiveTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    // out
+                    objs.messageFive.style.opacity = calcValues(values.messageFiveOpacityOut, currentYOffset)
+                    objs.messageFive.style.transform = `translate3d(0, ${calcValues(values.messageFiveTranslateYOut, currentYOffset)}%, 0)`
+                }
+
+                break
+            case 2:
+                objs.imageCanvasContext.drawImage(objs.imageCanvasImage, 0, 0)
+
+                if (scrollRatio >= 0.1) {
+                    objs.imageCanvas.style.opacity = calcValues(values.imageCanvasOpacityOut, currentYOffset)
+                }
+
+                if (scrollRatio <= 0.5) {
                     objs.titleBox.style.opacity = calcValues(values.titleBoxOpacityIn, currentYOffset)
                     objs.titleBox.style.transform = `translate3d(0, ${calcValues(values.titleBoxTranslateYIn, currentYOffset)}%, 0)`
                 } else {
                     objs.titleBox.style.opacity = calcValues(values.titleBoxOpacityOut, currentYOffset)
                     objs.titleBox.style.transform = `translate3d(0, ${calcValues(values.titleBoxTranslateYOut, currentYOffset)}%, 0)`
                 }
-
-                if (scrollRatio <= 0.1) {
-                    objs.canvas.style.opacity = calcValues(values.canvasOpacityIn, currentYOffset)
-                }
-
-                if (scrollRatio >= 0.8) {
-                    objs.canvas.style.opacity = calcValues(values.canvasOpacityOut, currentYOffset)
-                }
-                
-                break
-            case 2:
-                console.log(`play 2 ${currentSection}`)
                 break
             case 3:
                 console.log(`play 3 ${currentSection}`)

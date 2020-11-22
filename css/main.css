@@ -38,7 +38,7 @@ a {
 
 .scroll-section {
     padding-top: 50vh;
-    /* border: 1px solid #ffffff; */
+    border: 1px solid #ffffff;
 }
 
 #scroll-section-0 .main-title {
@@ -68,6 +68,24 @@ a {
     font-style: normal;
     line-height: normal;
     letter-spacing: -4.2px;
+}
+
+.main-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	top: 40vh;
+    margin: 5px 0;
+    height: 3em;
+    opacity: 1;
+    text-align: center;
+    font-family: SpoqaHanSans;
+    font-size: 60px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+    letter-spacing: -3.6px;
 }
 
 .center-wrapper {
@@ -137,6 +155,24 @@ a {
 .sticky-elem {
     display: none;
     position: fixed;
+    left: 0;
+    width: 100%;
+}
+
+.scroll-elem {
+    display: none;
+    position: fixed;
+}
+
+.sticky-elem-canvas {
+    top: 0;
+    height: 100%;
+}
+
+.sticky-elem-canvas canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
 
 .left-mock-screen {
@@ -201,6 +237,17 @@ body#show-scene-1 #scroll-section-1 .sticky-elem,
 body#show-scene-2 #scroll-section-2 .sticky-elem,
 body#show-scene-3 #scroll-section-3 .sticky-elem,
 body#show-scene-4 #scroll-section-4 .sticky-elem,
-body#show-scene-5 #scroll-section-5 .sticky-elem {
+body#show-scene-5 #scroll-section-5 .sticky-elem,
+body#show-scene-6 #scroll-section-6 .sticky-elem {
+    display: block;
+}
+
+body#show-scene-0 #scroll-section-0 .scroll-elem,
+body#show-scene-1 #scroll-section-1 .scroll-elem,
+body#show-scene-2 #scroll-section-2 .scroll-elem,
+body#show-scene-3 #scroll-section-3 .scroll-elem,
+body#show-scene-4 #scroll-section-4 .scroll-elem,
+body#show-scene-5 #scroll-section-5 .scroll-elem,
+body#show-scene-6 #scroll-section-6 .scroll-elem {
     display: block;
 }
