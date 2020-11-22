@@ -189,6 +189,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+	top: 40vh;
     width: 100%;
     font-family: SpoqaHanSans;
     font-size: 50px;
@@ -220,15 +221,15 @@ a {
     left: 50%;
 }
 
-#scroll-section-4 .index-1 {
+#scroll-section-5 .index-1 {
     color: #ee2c49;
 }
 
-#scroll-section-4 .index-2 {
+#scroll-section-5 .index-2 {
     color: #a4e21f;
 }
 
-#scroll-section-4 .index-3 {
+#scroll-section-5 .index-3 {
     color: #11a8fd;
 }
 

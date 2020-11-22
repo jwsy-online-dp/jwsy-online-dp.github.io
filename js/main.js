@@ -39,29 +39,29 @@
                 videoImages: [],
             },
             values: {
-                messageOneOpacityIn: [0, 1, { start: 0.1, end: 0.18}],
-                messageTwoOpacityIn: [0, 1, { start: 0.26, end: 0.34}],
+                messageOneOpacityIn: [0, 1, { start: 0.1, end: 0.18 }],
+                messageTwoOpacityIn: [0, 1, { start: 0.26, end: 0.34 }],
                 messageThreeOpacityIn: [0, 1, { start: 0.42, end: 0.5 }],
-                messageFourOpacityIn: [0, 1, { start: 0.58, end: 0.65}],
-                messageFiveOpacityIn: [0, 1, { start: 0.72, end: 0.81}],
+                messageFourOpacityIn: [0, 1, { start: 0.58, end: 0.65 }],
+                messageFiveOpacityIn: [0, 1, { start: 0.72, end: 0.81 }],
 
-                messageOneOpacityOut: [1, 0, { start: 0.18, end: 0.26}],
-                messageTwoOpacityOut: [1, 0, { start: 0.34, end: 0.42}],
-                messageThreeOpacityOut: [1, 0, { start: 0.5, end: 0.58}],
-                messageFourOpacityOut: [1, 0, { start: 0.65, end: 0.72}],
-                messageFiveOpacityOut: [1, 0, { start: 0.81, end: 0.9}],
+                messageOneOpacityOut: [1, 0, { start: 0.18, end: 0.26 }],
+                messageTwoOpacityOut: [1, 0, { start: 0.34, end: 0.42 }],
+                messageThreeOpacityOut: [1, 0, { start: 0.5, end: 0.58 }],
+                messageFourOpacityOut: [1, 0, { start: 0.65, end: 0.72 }],
+                messageFiveOpacityOut: [1, 0, { start: 0.81, end: 0.9 }],
 
-                messageOneTranslateYIn: [20, 0, { start: 0.1, end: 0.18}],
-                messageTwoTranslateYIn: [20, 0, { start: 0.26, end: 0.34}],
+                messageOneTranslateYIn: [20, 0, { start: 0.1, end: 0.18 }],
+                messageTwoTranslateYIn: [20, 0, { start: 0.26, end: 0.34 }],
                 messageThreeTranslateYIn: [20, 0, { start: 0.42, end: 0.5 }],
-                messageFourTranslateYIn: [20, 0, { start: 0.58, end: 0.65}],
-                messageFiveTranslateYIn: [20, 0, { start: 0.72, end: 0.81}],
+                messageFourTranslateYIn: [20, 0, { start: 0.58, end: 0.65 }],
+                messageFiveTranslateYIn: [20, 0, { start: 0.72, end: 0.81 }],
 
-                messageOneTranslateYOut: [0, -20, { start: 0.18, end: 0.26}],
-                messageTwoTranslateYOut: [0, -20, { start: 0.34, end: 0.42}],
-                messageThreeTranslateYOut: [0, -20, { start: 0.5, end: 0.58}],
-                messageFourTranslateYOut: [0, -20, { start: 0.65, end: 0.72}],
-                messageFiveTranslateYOut: [0, -20, { start: 0.81, end: 0.9}],
+                messageOneTranslateYOut: [0, -20, { start: 0.18, end: 0.26 }],
+                messageTwoTranslateYOut: [0, -20, { start: 0.34, end: 0.42 }],
+                messageThreeTranslateYOut: [0, -20, { start: 0.5, end: 0.58 }],
+                messageFourTranslateYOut: [0, -20, { start: 0.65, end: 0.72 }],
+                messageFiveTranslateYOut: [0, -20, { start: 0.81, end: 0.9 }],
 
                 videoImageCount: 338,
                 imageSequence: [0, 337],
@@ -69,7 +69,7 @@
             }
         },
         {
-            // scroll-section-1
+            // scroll-section-2
             type: "scroll-anim",
             height: 3,
             scrollHeight: 0,
@@ -91,16 +91,35 @@
             }
         },
         {
-            // scroll-section-2
+            // scroll-section-3
             type: "scroll-anim",
             height: 5,
             scrollHeight: 0,
             objs: {
                 container: document.querySelector("#scroll-section-3"),
+                leftMockScreen: document.querySelector("#scroll-section-3 .left-mock-screen"),
+
+                flowTextOne: document.querySelector("#scroll-section-3 .flow-text.one"),
+                flowTextTwo: document.querySelector("#scroll-section-3 .flow-text.two"),
+                flowTextThree: document.querySelector("#scroll-section-3 .flow-text.three"),
+            },
+            values: {
+                leftMockScreenOpacityIn: [0, 1, { start: 0.1, end: 0.1 }],
+                leftMockScreenOpacityOut: [1, 0, { start: 0.9, end: 1 }],
+                leftMockScreenTranslateYIn: [200, 0, { start: 0.1, end: 0.2 }],
+
+                flowTextOneTranslateYIn: [400, 0, {start: 0.15, end: 0.2}],
+                flowTextOneTranslateYOut: [0, -400, {start: 0.2, end: 0.3}],
+
+                flowTextTwoTranslateYIn:  [400, 0, {start: 0.4, end: 0.5}],
+                flowTextTwoTranslateYOut:  [0, -400, {start: 0.5, end: 0.6}],
+
+                flowTextThreeTranslateYIn:  [400, 0, {start: 0.7, end: 0.8}],
+                flowTextThreeTranslateYOut:  [0, -400, {start: 0.8, end: 0.9}],
             }
         },
         {
-            // scroll-section-3
+            // scroll-section-4
             type: "scroll-anim",
             height: 3,
             scrollHeight: 0,
@@ -109,7 +128,7 @@
             }
         },
         {
-            // scroll-section-4
+            // scroll-section-5
             type: "scroll-anim",
             height: 5,
             scrollHeight: 0,
@@ -118,7 +137,7 @@
             }
         },
         {
-            // scroll-section-5
+            // scroll-section-6
             type: "scroll-anim",
             height: 5,
             scrollHeight: 0,
@@ -279,7 +298,30 @@
                 }
                 break
             case 3:
-                console.log(`play 3 ${currentSection}`)
+                if (scrollRatio <= 0.5) {
+                    objs.leftMockScreen.style.opacity = calcValues(values.leftMockScreenOpacityIn, currentYOffset)
+                    objs.leftMockScreen.style.transform = `translate3d(0, ${calcValues(values.leftMockScreenTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    objs.leftMockScreen.style.opacity = calcValues(values.leftMockScreenOpacityOut, currentYOffset)
+                }
+
+                if (scrollRatio <= 0.2) {
+                    objs.flowTextOne.style.transform = `translate3d(0, ${calcValues(values.flowTextOneTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    objs.flowTextOne.style.transform = `translate3d(0, ${calcValues(values.flowTextOneTranslateYOut, currentYOffset)}%, 0)`
+                }
+
+                if (scrollRatio <= 0.5) {
+                    objs.flowTextTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    objs.flowTextTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYOut, currentYOffset)}%, 0)`
+                }
+
+                if (scrollRatio <= 0.8) {
+                    objs.flowTextThree.style.transform = `translate3d(0, ${calcValues(values.flowTextThreeTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    objs.flowTextThree.style.transform = `translate3d(0, ${calcValues(values.flowTextThreeTranslateYOut, currentYOffset)}%, 0)`
+                }
                 break
             case 4:
                 console.log(`play 4 ${currentSection}`)
