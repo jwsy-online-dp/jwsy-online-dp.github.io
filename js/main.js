@@ -80,15 +80,21 @@
 
                 imageCanvas: document.querySelector("#image-canvas-1"),
                 imageCanvasContext: document.querySelector("#image-canvas-1").getContext("2d"),
-                imageCanvasImage: null
+
+                stillImagePaths: [
+                    `./video/001/IMG1338.jpg`
+                ],
+                stillImages: []
             },
             values: {
                 titleBoxOpacityIn: [0, 1, { start: 0.1, end: 0.1 }],
                 titleBoxOpacityOut: [1, 0, { start: 0.9, end: 0.9 }],
-                titleBoxTranslateYIn: [200, 0, { start: 0.1, end: 0.4 }],
-                titleBoxTranslateYOut: [0, -200, { start: 0.7, end: 0.9 }],
+                titleBoxTranslateYIn: [300, 0, { start: 0.1, end: 0.4 }],
+                titleBoxTranslateYOut: [0, -300, { start: 0.7, end: 0.9 }],
 
-                imageCanvasOpacityOut: [1, 0, { start: 0.4, end: 0.7 }]
+                imageCanvasOpacityOut: [1, 0, { start: 0.4, end: 0.7 }],
+
+                stillImageHeightIn: [window.innerHeight / 1080, 350 / 1080, {start: 0.1, end: 0.4}]
             }
         },
         {
@@ -231,7 +237,7 @@
     }
 
     function setLayout() {
-        // scrollToTop()
+        scrollToTop()
 
         for (let i = 0; i < sectionInfo.length; i++) {
             sectionInfo[i].scrollHeight = sectionInfo[i].height * window.innerHeight
@@ -254,6 +260,8 @@
         sectionInfo[1].objs.canvas.style.transform = `translate3d(-50%, -50%, 0) scale(${heightRatio})`
         sectionInfo[2].objs.imageCanvas.style.transform = `translate3d(-50%, -50%, 0) scale(${heightRatio})`
         sectionInfo[4].objs.backgroundVideo.style.transform = `translate3d(-50%, -50%, 0) scale(${heightRatio})`
+
+        sectionInfo[2].objs.titleBox.style.transform = `translate3d(-50%, -50%, 0) scale(${heightRatio})`
     }
 
     function setCanvasImages() {
@@ -263,10 +271,11 @@
             imgElem.src = `./video/001/IMG${1001 + i}.jpg`
             sectionInfo[1].objs.videoImages.push(imgElem)
         }
-
-        imgElem = new Image()
-        imgElem.src = `./video/001/IMG1338.jpg`
-        sectionInfo[2].objs.imageCanvasImage = imgElem
+        for (let i = 0; i < sectionInfo[2].objs.stillImagePaths.length; i++) {
+            let imgElem = new Image()
+            imgElem.src = sectionInfo[2].objs.stillImagePaths[i]
+            sectionInfo[2].objs.stillImages.push(imgElem)
+        }
     }
 
     function scrollLoop() {
@@ -372,7 +381,9 @@
                 break
 
             case 2:
-                objs.imageCanvasContext.drawImage(objs.imageCanvasImage, 0, 0)
+                objs.imageCanvasContext.drawImage(objs.stillImages[0], 0, 0)
+                objs.imageCanvas.style.transform = `translate3d(-50%, -50%, 0) scale(${calcValues(values.stillImageHeightIn, currentYOffset)})`
+                objs.titleBox.style.transform = `translate3d(-50%, -50%, 0) scale(${350 / 1080})`
 
                 if (scrollRatio >= 0.1) {
                     objs.imageCanvas.style.opacity = calcValues(values.imageCanvasOpacityOut, currentYOffset)
@@ -380,10 +391,10 @@
 
                 if (scrollRatio <= 0.5) {
                     objs.titleBox.style.opacity = calcValues(values.titleBoxOpacityIn, currentYOffset)
-                    objs.titleBox.style.transform = `translate3d(0, ${calcValues(values.titleBoxTranslateYIn, currentYOffset)}%, 0)`
+                    objs.titleBox.style.transform = `translate3d(-50%, ${-50 + calcValues(values.titleBoxTranslateYIn, currentYOffset)}%, 0) scale(${350 / 1080})`
                 } else {
                     objs.titleBox.style.opacity = calcValues(values.titleBoxOpacityOut, currentYOffset)
-                    objs.titleBox.style.transform = `translate3d(0, ${calcValues(values.titleBoxTranslateYOut, currentYOffset)}%, 0)`
+                    objs.titleBox.style.transform = `translate3d(-50%, ${-50 + calcValues(values.titleBoxTranslateYOut, currentYOffset)}%, 0) scale(${350 / 1080})`
                 }
                 break
 

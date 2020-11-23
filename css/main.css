@@ -37,13 +37,13 @@ a {
 }
 
 .scroll-section {
-    padding-top: 50vh;
-    /* border: 1px solid #ffffff; */
+    /* padding-top: 50vh; */
+    border: 1px solid #ffffff;
 }
 
 #scroll-section-0 .main-title {
     position: relative;
-    top: -15vh;
+    top: 35vh;
     z-index: 5;
     text-align: center;
 }
@@ -109,11 +109,14 @@ a {
     align-items: center;
     justify-content: center;
     opacity: 0;
-    top: 30vh;
-    width: 720px;
-    height: 350px;
-    border-radius: 20px;
-    border: solid 3px #ffffff;
+    z-index: 5;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1920px;
+    height: 1080px;
+    border-radius: 3rem;
+    border: solid 0.7rem #ffffff;
 }
 
 .title-box p {
@@ -121,12 +124,12 @@ a {
     align-items: center;
     justify-content: center;
     height: 100%;
-    font-size: 60px;
+    font-size: 9rem;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
     line-height: 1.43;
-    letter-spacing: -3.6px;
+    letter-spacing: -0.5rem;
 }
 
 .flow-right {
