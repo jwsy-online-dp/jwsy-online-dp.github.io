@@ -94,7 +94,7 @@
 
                 imageCanvasOpacityOut: [1, 0, { start: 0.4, end: 0.7 }],
 
-                stillImageHeightIn: [window.innerHeight / 1080, 350 / 1080, {start: 0.1, end: 0.4}]
+                stillImageHeightIn: [window.innerHeight / 1080, 350 / 1080, { start: 0.1, end: 0.4 }]
             }
         },
         {
@@ -203,7 +203,7 @@
 
                 rightMockVideoTwoOpacityIn: [0, 1, { start: 0.4, end: 0.5 }],
                 rightMockVideoTwoOpacityOut: [1, 0, { start: 0.5, end: 0.6 }],
-                
+
                 rightMockVideoThreeOpacityIn: [0, 1, { start: 0.7, end: 0.8 }],
                 rightMockVideoThreeOpacityOut: [1, 0, { start: 0.8, end: 0.9 }],
             }
@@ -216,7 +216,15 @@
             objs: {
                 container: document.querySelector("#scroll-section-6"),
 
-                flowTitle: document.querySelector("#scroll-section-6 .flow-title")
+                flowTitle: document.querySelector("#scroll-section-6 .flow-title"),
+
+                imageCanvas: document.querySelector("#image-canvas-2"),
+                imageCanvasContext: document.querySelector("#image-canvas-2").getContext("2d"),
+
+                imagePaths: [
+                    `./img/006/background.jpg`
+                ],
+                images: []
             },
             values: {
                 flowTitleOpacityIn: [0, 1, { start: 0, end: 0 }],
@@ -226,8 +234,64 @@
                 flowTitleTranslateYOut: [0, -400, { start: 0.3, end: 0.5 }],
 
                 flowTitleScaleIn: [0.5, 1, { start: 0, end: 0.3 }],
+
+                backgroundImageTranslateYIn: [100, 0, {start: 0.4, end: 0.5}],
+                backgroundImageTranslateYOut: [0, -100, {start: 0.6, end: 0.7}]
             }
         },
+        {
+            // scroll-section-7
+            type: "scroll-anim",
+            height: 5,
+            scrollHeight: 0,
+            objs: {
+                container: document.querySelector("#scroll-section-7"),
+
+            },
+            values: {
+
+            }
+        },
+        {
+            // scroll-section-8
+            type: "scroll-anim",
+            height: 5,
+            scrollHeight: 0,
+            objs: {
+                container: document.querySelector("#scroll-section-8"),
+
+            },
+            values: {
+
+            }
+
+        },
+        {
+            // scroll-section-9
+            type: "scroll-anim",
+            height: 5,
+            scrollHeight: 0,
+            objs: {
+                container: document.querySelector("#scroll-section-9"),
+
+            },
+            values: {
+
+            }
+        },
+        {
+            // scroll-section-10
+            type: "scroll-anim",
+            height: 5,
+            scrollHeight: 0,
+            objs: {
+                container: document.querySelector("#scroll-section-10"),
+
+            },
+            values: {
+
+            }
+        }
     ]
 
     function scrollToTop() {
@@ -237,7 +301,7 @@
     }
 
     function setLayout() {
-        scrollToTop()
+        // scrollToTop()
 
         for (let i = 0; i < sectionInfo.length; i++) {
             sectionInfo[i].scrollHeight = sectionInfo[i].height * window.innerHeight
@@ -275,6 +339,11 @@
             let imgElem = new Image()
             imgElem.src = sectionInfo[2].objs.stillImagePaths[i]
             sectionInfo[2].objs.stillImages.push(imgElem)
+        }
+        for (let i = 0; i < sectionInfo[6].objs.imagePaths.length; i++) {
+            let imgElem = new Image()
+            imgElem.src = sectionInfo[6].objs.imagePaths[i]
+            sectionInfo[6].objs.images.push(imgElem)
         }
     }
 
@@ -435,7 +504,7 @@
                 if (scrollRatio <= 0.3) {
                     objs.flowTitle.style.opacity = calcValues(values.flowTitleOpacityIn, currentYOffset)
                     objs.flowTitle.style.transform = `translate3d(0, ${calcValues(values.flowTitleTranslateYIn, currentYOffset)}%, 0) scale(${calcValues(values.flowTitleScaleIn, currentYOffset)})`
-                    
+
                 } else {
                     objs.flowTitle.style.opacity = calcValues(values.flowTitleOpacityOut, currentYOffset)
                     objs.flowTitle.style.transform = `translate3d(0, ${calcValues(values.flowTitleTranslateYOut, currentYOffset)}%, 0)`
@@ -448,7 +517,7 @@
                     objs.backgroundVideo.style.transform = `translate3d(0, ${calcValues(values.backgroundVideoTranslateYIn, currentYOffset)}%, 0) scale(${calcValues(values.flowTitleScaleIn, currentYOffset)})`
                 } else {
                     objs.backgroundVideo.style.opacity = calcValues(values.backgroundVideoOpacityOut, currentYOffset)
-                    objs.backgroundVideo.style.transform = `translate3d(0, ${calcValues(values.backgroundVideoTranslateYOut, currentYOffset)}%, 0) scale(${calcValues(values.flowTitleScaleIn, currentYOffset)})` 
+                    objs.backgroundVideo.style.transform = `translate3d(0, ${calcValues(values.backgroundVideoTranslateYOut, currentYOffset)}%, 0) scale(${calcValues(values.flowTitleScaleIn, currentYOffset)})`
                 }
 
                 break
@@ -471,7 +540,7 @@
                     objs.flowTextOne.style.transform = `translate3d(0, ${calcValues(values.flowTextOneTranslateYOut, currentYOffset)}%, 0)`
                     objs.rightMockVideoOne.style.opacity = calcValues(values.rightMockVideoOneOpacityOut, currentYOffset)
                 }
-                
+
                 if (scrollRatio <= 0.5) {
                     objs.flowTextTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYIn, currentYOffset)}%, 0)`
                     objs.rightMockVideoTwo.style.opacity = calcValues(values.rightMockVideoTwoOpacityIn, currentYOffset)
@@ -479,7 +548,7 @@
                     objs.flowTextTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYOut, currentYOffset)}%, 0)`
                     objs.rightMockVideoTwo.style.opacity = calcValues(values.rightMockVideoTwoOpacityOut, currentYOffset)
                 }
-                
+
                 if (scrollRatio <= 0.8) {
                     objs.flowTextThree.style.transform = `translate3d(0, ${calcValues(values.flowTextThreeTranslateYIn, currentYOffset)}%, 0)`
                     objs.rightMockVideoThree.style.opacity = calcValues(values.rightMockVideoThreeOpacityIn, currentYOffset)
@@ -490,6 +559,16 @@
                 break
 
             case 6:
+                const widthRatio = window.innerWidth / objs.imageCanvas.width
+                const heightRatio = window.innerHeight / objs.imageCanvas.height
+                let canvasScaleRatio;
+
+                if (widthRatio <= heightRatio) {
+                    canvasScaleRatio = heightRatio
+                } else {
+                    canvasScaleRatio = widthRatio
+                }
+
                 if (scrollRatio <= 0.3) {
                     objs.flowTitle.style.opacity = calcValues(values.flowTitleOpacityIn, currentYOffset)
                     objs.flowTitle.style.transform = `translate3d(0, ${calcValues(values.flowTitleTranslateYIn, currentYOffset)}%, 0) scale(${calcValues(values.flowTitleScaleIn, currentYOffset)})`
@@ -497,6 +576,15 @@
                     objs.flowTitle.style.opacity = calcValues(values.flowTitleOpacityOut, currentYOffset)
                     objs.flowTitle.style.transform = `translate3d(0, ${calcValues(values.flowTitleTranslateYOut, currentYOffset)}%, 0)`
                 }
+
+                if (scrollRatio >= 0.4 && scrollRatio < 0.55) {
+                    objs.imageCanvas.style.transform = `translate3d(-50%, ${-50 + calcValues(values.backgroundImageTranslateYIn, currentYOffset)}%, 0) scale(${canvasScaleRatio})`
+                    objs.imageCanvasContext.drawImage(objs.images[0], 0, 0)
+                } else if (scrollRatio > 0.55 && scrollRatio <= 0.7) {
+                    objs.imageCanvas.style.transform = `translate3d(-50%, ${-50 + calcValues(values.backgroundImageTranslateYOut, currentYOffset)}%, 0) scale(${canvasScaleRatio})`
+                    objs.imageCanvasContext.drawImage(objs.images[0], 0, 0)
+                }
+
                 break
         }
     }
@@ -554,8 +642,8 @@
         scrollLoop()
     })
     window.addEventListener('resize', setLayout)
-    window.onscroll = function(e) {
+    window.onscroll = function (e) {
         scrollDirectionUp = this.oldScroll > this.scrollY
         this.oldScroll = this.scrollY
-      }
+    }
 })()

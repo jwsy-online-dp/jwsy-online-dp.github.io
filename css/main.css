@@ -71,7 +71,9 @@ a {
     letter-spacing: -4.2px;
 }
 
-.main-message {
+#scroll-section-1 .main-message,
+#scroll-section-4 .main-message,
+#scroll-section-6 .main-message {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,7 +81,7 @@ a {
 	top: 40vh;
     margin: 5px 0;
     height: 3em;
-    opacity: 1;
+    opacity: 0;
     text-align: center;
     font-family: SpoqaHanSans;
     font-size: 60px;
@@ -237,6 +239,7 @@ a {
 
 .sticky-elem-video {
     top: 0;
+    height: 100%;
     /* width: 100%; */
 }
 
@@ -258,13 +261,70 @@ a {
     color: #11a8fd;
 }
 
+#scroll-section-7 {
+	background: #ffffff;
+	color: #000000;
+}
+
+#scroll-section-7 .screen-title {
+    position: fixed;
+    top: 10vh;
+    font-family: SpoqaHanSans;
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: -2.4px;
+    text-align: center;
+}
+
+#scroll-section-7 .screen-footer {
+    font-family: SpoqaHanSans;
+    font-size: 24px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -1.2px;
+    text-align: center;
+}
+
+#scroll-section-7 .flow-text strong {
+    font-family: SpoqaHanSans;
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: -2.4px;
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+#scroll-section-7 .flow-text p {
+    font-family: SpoqaHanSans;
+    font-size: 24px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -1.44px;
+    text-align: left;
+}
+
 body#show-scene-0 #scroll-section-0 .sticky-elem,
 body#show-scene-1 #scroll-section-1 .sticky-elem,
 body#show-scene-2 #scroll-section-2 .sticky-elem,
 body#show-scene-3 #scroll-section-3 .sticky-elem,
 body#show-scene-4 #scroll-section-4 .sticky-elem,
 body#show-scene-5 #scroll-section-5 .sticky-elem,
-body#show-scene-6 #scroll-section-6 .sticky-elem {
+body#show-scene-6 #scroll-section-6 .sticky-elem,
+body#show-scene-7 #scroll-section-7 .sticky-elem,
+body#show-scene-8 #scroll-section-8 .sticky-elem,
+body#show-scene-9 #scroll-section-9 .sticky-elem,
+body#show-scene-10 #scroll-section-10 .sticky-elem,
+body#show-scene-11 #scroll-section-11 .sticky-elem {
     display: block;
 }
 
@@ -274,6 +334,11 @@ body#show-scene-2 #scroll-section-2 .scroll-elem,
 body#show-scene-3 #scroll-section-3 .scroll-elem,
 body#show-scene-4 #scroll-section-4 .scroll-elem,
 body#show-scene-5 #scroll-section-5 .scroll-elem,
-body#show-scene-6 #scroll-section-6 .scroll-elem {
+body#show-scene-6 #scroll-section-6 .scroll-elem,
+body#show-scene-7 #scroll-section-7 .scroll-elem,
+body#show-scene-8 #scroll-section-8 .scroll-elem,
+body#show-scene-9 #scroll-section-9 .scroll-elem,
+body#show-scene-10 #scroll-section-10 .scroll-elem,
+body#show-scene-11 #scroll-section-11 .scroll-elem {
     display: block;
 }
