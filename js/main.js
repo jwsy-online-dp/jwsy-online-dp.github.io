@@ -235,8 +235,8 @@
 
                 flowTitleScaleIn: [0.5, 1, { start: 0, end: 0.3 }],
 
-                backgroundImageTranslateYIn: [100, 0, {start: 0.4, end: 0.5}],
-                backgroundImageTranslateYOut: [0, -100, {start: 0.6, end: 0.7}]
+                backgroundImageTranslateYIn: [100, 0, { start: 0.4, end: 0.5 }],
+                backgroundImageTranslateYOut: [0, -100, { start: 0.6, end: 0.7 }]
             }
         },
         {
@@ -247,9 +247,19 @@
             objs: {
                 container: document.querySelector("#scroll-section-7"),
 
+                flowTextOne: document.querySelector("#scroll-section-7 .flow-text.one"),
+                flowTextTwo: document.querySelector("#scroll-section-7 .flow-text.two"),
             },
             values: {
+                flowTextOneTranslateYIn: [200, 0, { start: 0.3, end: 0.4 }],
 
+                flowTextOneOpacityIn: [0, 1, { start: 0.3, end: 0.4 }],
+                flowTextOneOpacityOut: [1, 0, { start: 0.5, end: 0.6 }],
+
+                flowTextTwoTranslateYIn: [200, 0, { start: 0.6, end: 0.7 }],
+                flowTextTwoTranslateYOut: [0, -200, { start: 0.8, end: 0.9 }],
+
+                flowTextTwoOpacityIn: [0, 1, { start: 0.6, end: 0.7 }]
             }
         },
         {
@@ -585,6 +595,23 @@
                     objs.imageCanvasContext.drawImage(objs.images[0], 0, 0)
                 }
 
+                break
+
+            case 7:
+                if (scrollRatio < 0.45) {
+                    objs.flowTextOne.style.opacity = calcValues(values.flowTextOneOpacityIn, currentYOffset)
+                    objs.flowTextOne.style.transform = `translate3d(0, ${calcValues(values.flowTextOneTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    objs.flowTextOne.style.opacity = calcValues(values.flowTextOneOpacityOut, currentYOffset)
+                }
+
+                if (scrollRatio < 0.75) {
+                    objs.flowTextTwo.style.opacity = calcValues(values.flowTextTwoOpacityIn, currentYOffset)
+                    objs.flowTextTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    objs.flowTextTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYOut, currentYOffset)}%, 0)`
+                }
+            
                 break
         }
     }
