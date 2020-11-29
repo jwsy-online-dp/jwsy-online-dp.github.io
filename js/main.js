@@ -279,14 +279,72 @@
         {
             // scroll-section-9
             type: "scroll-anim",
-            height: 5,
+            height: 8,
             scrollHeight: 0,
             objs: {
                 container: document.querySelector("#scroll-section-9"),
 
+                flowTextOne: document.querySelector("#scroll-section-9 .flow-text.one"),
+                flowTextTwo: document.querySelector("#scroll-section-9 .flow-text.two"),
+
+                backgroundVideoOne: document.querySelector("#scroll-section-9 .full-video.one"),
+                backgroundVideoTwo: document.querySelector("#scroll-section-9 .full-video.two"),
+                backgroundVideoThree: document.querySelector("#scroll-section-9 .full-video.three"),
+
+                imageCanvas: document.querySelector("#image-canvas-3"),
+                imageCanvasContext: document.querySelector("#image-canvas-3").getContext("2d"),
+
+                imagePaths: [
+                    `./img/009/chill_mockup.png`
+                ],
+                images: [],
+
+                flowTitleThree: document.querySelector("#scroll-section-9 .screen-title.three"),
+                flowFooterThree: document.querySelector("#scroll-section-9 .screen-footer.three"),
+
             },
             values: {
+                flowTextOneTranslateYIn: [200, 0, { start: 0.1, end: 0.2 }],
+                flowTextOneOpacityIn: [0, 1, { start: 0.1, end: 0.2 }],
+                
+                flowTextOneTranslateYOut: [0, -200, { start: 0.25, end: 0.35 }],
+                flowTextOneOpacityOut: [1, 0, { start: 0.25, end: 0.35 }],
 
+                flowTextTwoTranslateYIn: [200, 0, { start: 0.4, end: 0.5 }],
+                flowTextTwoOpacityIn: [0, 1, { start: 0.4, end: 0.5 }],
+                
+                flowTextTwoTranslateYOut: [0, -200, { start: 0.55, end: 0.65 }],
+                flowTextTwoOpacityOut: [1, 0, { start: 0.55, end: 0.65 }],
+
+                backgroundImageTranslateYIn: [100, 0, { start: 0.65, end: 0.75 }],
+                backgroundImageTranslateYOut: [0, -100, { start: 0.8, end: 0.85 }],
+
+                flowThreeTranslateYIn: [50, 0, {start: 0.85, end: 0.9}],
+                flowThreeOpacityIn: [0, 1, {start: 0.85, end: 0.9}],
+
+                flowThreeTranslateYOut: [0, -50, {start: 0.95, end: 1}],
+                flowThreeOpacityOut: [1, 0, {start: 0.95, end: 1}],
+            }
+        },
+        {
+            // scroll-section-10
+            type: "scroll-anim",
+            height: 2,
+            scrollHeight: 0,
+            objs: {
+                container: document.querySelector("#scroll-section-10"),
+
+                imageCanvas: document.querySelector("#image-canvas-4"),
+                imageCanvasContext: document.querySelector("#image-canvas-4").getContext("2d"),
+
+                imagePaths: [
+                    `./img/010/all_mockup_full.png`
+                ],
+                images: []
+            },
+            values: {
+                backgroundImageTranslateYIn: [100, 0, { start: 0.1, end: 0.3 }],
+                backgroundImageTranslateYOut: [0, -100, { start: 0.7, end: 0.9 }],
             }
         },
         {
@@ -354,6 +412,16 @@
             let imgElem = new Image()
             imgElem.src = sectionInfo[6].objs.imagePaths[i]
             sectionInfo[6].objs.images.push(imgElem)
+        }
+        for (let i = 0; i < sectionInfo[9].objs.imagePaths.length; i++) {
+            let imgElem = new Image()
+            imgElem.src = sectionInfo[9].objs.imagePaths[i]
+            sectionInfo[9].objs.images.push(imgElem)
+        }
+        for (let i = 0; i < sectionInfo[10].objs.imagePaths.length; i++) {
+            let imgElem = new Image()
+            imgElem.src = sectionInfo[10].objs.imagePaths[i]
+            sectionInfo[10].objs.images.push(imgElem)
         }
     }
 
@@ -613,7 +681,87 @@
                 }
             
                 break
+
+            case 9:
+
+                rangeVideoLoop(0.1, 0.35, objs.backgroundVideoOne, scrollRatio)
+                rangeVideoLoop(0.4, 0.65, objs.backgroundVideoTwo, scrollRatio)
+                rangeVideoLoop(0.85, 1, objs.backgroundVideoThree, scrollRatio)
+
+                if (scrollRatio < 0.225) {
+                    objs.flowTextOne.style.opacity = calcValues(values.flowTextOneOpacityIn, currentYOffset)
+                    objs.flowTextOne.style.transform = `translate3d(0, ${calcValues(values.flowTextOneTranslateYIn, currentYOffset)}%, 0)`
+                    objs.backgroundVideoOne.style.opacity = calcValues(values.flowTextOneOpacityIn, currentYOffset)
+                    objs.backgroundVideoOne.style.transform = `translate3d(0, ${calcValues(values.flowTextOneTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    objs.flowTextOne.style.opacity = calcValues(values.flowTextOneOpacityOut, currentYOffset)
+                    objs.flowTextOne.style.transform = `translate3d(0, ${calcValues(values.flowTextOneTranslateYOut, currentYOffset)}%, 0)`
+                    objs.backgroundVideoOne.style.opacity = calcValues(values.flowTextOneOpacityOut, currentYOffset)
+                    objs.backgroundVideoOne.style.transform = `translate3d(0, ${calcValues(values.flowTextOneTranslateYOut, currentYOffset)}%, 0)`
+                }
+
+                if (scrollRatio < 0.525) {
+                    objs.flowTextTwo.style.opacity = calcValues(values.flowTextTwoOpacityIn, currentYOffset)
+                    objs.flowTextTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYIn, currentYOffset)}%, 0)`
+                    objs.backgroundVideoTwo.style.opacity = calcValues(values.flowTextTwoOpacityIn, currentYOffset)
+                    objs.backgroundVideoTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    objs.flowTextTwo.style.opacity = calcValues(values.flowTextTwoOpacityOut, currentYOffset)
+                    objs.flowTextTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYOut, currentYOffset)}%, 0)`
+                    objs.backgroundVideoTwo.style.opacity = calcValues(values.flowTextTwoOpacityOut, currentYOffset)
+                    objs.backgroundVideoTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYOut, currentYOffset)}%, 0)`
+                }
+
+                if (scrollRatio < 0.775) {
+                    objs.imageCanvas.style.transform = `translate3d(-50%, ${-50 + calcValues(values.backgroundImageTranslateYIn, currentYOffset)}%, 0) scale(${calculateCanvasSacleRatio(objs)})`
+                    objs.imageCanvasContext.drawImage(objs.images[0], 0, 0)
+                } else {
+                    objs.imageCanvas.style.transform = `translate3d(-50%, ${-50 + calcValues(values.backgroundImageTranslateYOut, currentYOffset)}%, 0) scale(${calculateCanvasSacleRatio(objs)})`
+                    objs.imageCanvasContext.drawImage(objs.images[0], 0, 0)
+                }
+
+                if (scrollRatio < 0.925) {
+                    objs.flowTitleThree.style.opacity = calcValues(values.flowThreeOpacityIn, currentYOffset)
+                    objs.flowTitleThree.style.transform = `translate3d(0, ${calcValues(values.flowThreeTranslateYIn, currentYOffset)}%, 0)`
+                    objs.flowFooterThree.style.opacity = calcValues(values.flowThreeOpacityIn, currentYOffset)
+                    objs.flowFooterThree.style.transform = `translate3d(0, ${calcValues(values.flowThreeTranslateYIn, currentYOffset)}%, 0)`
+                    objs.backgroundVideoThree.style.opacity = calcValues(values.flowThreeOpacityIn, currentYOffset)
+                    objs.backgroundVideoThree.style.transform = `translate3d(0, ${calcValues(values.flowThreeTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    objs.flowTitleThree.style.opacity = calcValues(values.flowThreeOpacityOut, currentYOffset)
+                    objs.flowTitleThree.style.transform = `translate3d(0, ${calcValues(values.flowThreeTranslateYOut, currentYOffset)}%, 0)`
+                    objs.flowFooterThree.style.opacity = calcValues(values.flowThreeOpacityOut, currentYOffset)
+                    objs.flowFooterThree.style.transform = `translate3d(0, ${calcValues(values.flowThreeTranslateYOut, currentYOffset)}%, 0)`
+                    objs.backgroundVideoThree.style.opacity = calcValues(values.flowThreeOpacityOut, currentYOffset)
+                    objs.backgroundVideoThree.style.transform = `translate3d(0, ${calcValues(values.flowThreeTranslateYOut, currentYOffset)}%, 0)`
+                }
+
+                break
+
+            case 10:
+                if (scrollRatio < 0.5) {
+                    objs.imageCanvas.style.transform = `translate3d(-50%, ${-50 + calcValues(values.backgroundImageTranslateYIn, currentYOffset)}%, 0) scale(${calculateCanvasSacleRatio(objs)})`
+                    objs.imageCanvasContext.drawImage(objs.images[0], 0, 0)
+                } else {
+                    objs.imageCanvas.style.transform = `translate3d(-50%, ${-50 + calcValues(values.backgroundImageTranslateYOut, currentYOffset)}%, 0) scale(${calculateCanvasSacleRatio(objs)})`
+                    objs.imageCanvasContext.drawImage(objs.images[0], 0, 0)
+                }
+                break
         }
+    }
+
+    function calculateCanvasSacleRatio(objs) {
+        const widthRatio = window.innerWidth / objs.imageCanvas.width
+        const heightRatio = window.innerHeight / objs.imageCanvas.height
+        let canvasScaleRatio
+        
+        if (widthRatio <= heightRatio) {
+            canvasScaleRatio = heightRatio
+        } else {
+            canvasScaleRatio = widthRatio
+        }
+
+        return canvasScaleRatio
     }
 
     function rangeVideoLoop(rangeStart, rangeEnd, video, scrollRatio) {

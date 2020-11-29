@@ -38,7 +38,7 @@ a {
 
 .scroll-section {
     /* padding-top: 50vh; */
-    border: 1px solid #ffffff;
+    /* border: 1px solid #ffffff; */
 }
 
 #scroll-section-0 .main-title {
@@ -302,6 +302,10 @@ a {
     margin-bottom: 40px;
 }
 
+#scroll-section-7 .flow-text {
+    top: 38%;
+}
+
 #scroll-section-7 .flow-text p {
     font-family: SpoqaHanSans;
     font-size: 24px;
@@ -311,6 +315,56 @@ a {
     line-height: 1.5;
     letter-spacing: -1.44px;
     text-align: left;
+}
+
+#scroll-section-9 .flow-text {
+    z-index: 10;
+}
+
+#scroll-section-9 .flow-text strong {
+    font-family: SpoqaHanSans;
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: -2.4px;
+}
+
+#scroll-section-9 .flow-text p {
+    font-family: SpoqaHanSans;
+    font-size: 24px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -1.2px;
+}
+
+#scroll-section-9 .screen-title {
+    top: 10vh;
+    width: 100%;
+    font-family: SpoqaHanSans;
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: -2.4px;
+    text-align: center;
+}
+
+#scroll-section-9 .screen-footer {
+    bottom: 8vh;
+    width: 100%;
+    font-family: SpoqaHanSans;
+    font-size: 24px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -1.2px;
+    text-align: center;
 }
 
 body#show-scene-0 #scroll-section-0 .sticky-elem,
