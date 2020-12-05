@@ -7,6 +7,8 @@
     let enterNewScene = false
     let scrollDirectionUp = null
 
+    const heightRatio = window.innerHeight / 1080
+
     const indicatorProgress = document.querySelector("#indicator-progress")
 
     const sectionInfo = [
@@ -56,7 +58,7 @@
                 titleBoxTranslateYIn: [300, 0, { start: 0.75, end: 0.85 }],
                 titleBoxTranslateYOut: [0, -300, { start: 0.9, end: 1 }],
 
-                canvasHeightIn: [0, 350 / 1080, { start: 0.75, end: 0.85 }]
+                canvasHeightIn: [heightRatio, 350 / 1080, { start: 0.75, end: 0.85 }]
             }
         },
         {
@@ -284,9 +286,10 @@
                 ],
                 images: [],
 
+                canvasMiddleTitle: document.querySelector("#scroll-section-9 .canvas-middle-title"),
+
                 flowTitleThree: document.querySelector("#scroll-section-9 .screen-title.three"),
                 flowFooterThree: document.querySelector("#scroll-section-9 .screen-footer.three"),
-
             },
             values: {
                 flowTextOneTranslateYIn: [200, 0, { start: 0.1, end: 0.2 }],
@@ -301,14 +304,14 @@
                 flowTextTwoTranslateYOut: [0, -200, { start: 0.55, end: 0.65 }],
                 flowTextTwoOpacityOut: [1, 0, { start: 0.55, end: 0.65 }],
 
-                backgroundImageTranslateYIn: [100, 0, { start: 0.58, end: 0.75 }],
-                backgroundImageTranslateYOut: [0, -100, { start: 0.8, end: 0.85 }],
+                flowThreeTranslateYIn: [50, 0, { start: 0.58, end: 0.73 }],
+                flowThreeOpacityIn: [0, 1, { start: 0.58, end: 0.73 }],
 
-                flowThreeTranslateYIn: [50, 0, { start: 0.85, end: 0.9 }],
-                flowThreeOpacityIn: [0, 1, { start: 0.85, end: 0.9 }],
+                flowThreeTranslateYOut: [0, -50, { start: 0.76, end: 0.80 }],
+                flowThreeOpacityOut: [1, 0, { start: 0.76, end: 0.80 }],
 
-                flowThreeTranslateYOut: [0, -50, { start: 0.95, end: 1 }],
-                flowThreeOpacityOut: [1, 0, { start: 0.95, end: 1 }],
+                backgroundImageTranslateYIn: [100, 0, { start: 0.80, end: 0.9 }],
+                backgroundImageTranslateYOut: [0, -100, { start: 0.95, end: 1 }],
             }
         },
         {
@@ -379,7 +382,7 @@
         document.body.setAttribute('id', `show-scene-${currentSection}`)
         document.body.innerWidth = window.innerWidth
 
-        const heightRatio = window.innerHeight / 1080
+        // const heightRatio = window.innerHeight / 1080
         sectionInfo[1].objs.canvas.style.transform = `translate3d(-50%, -50%, 0) scale(${heightRatio})`
         sectionInfo[4].objs.backgroundVideo.style.transform = `translate3d(-50%, -50%, 0) scale(${heightRatio})`
         sectionInfo[1].objs.titleBox.style.transform = `translate3d(-50%, -50%, 0) scale(${heightRatio})`
@@ -443,6 +446,7 @@
         const scrollHeight = sectionInfo[currentSection].scrollHeight
         const scrollRatio = currentYOffset / scrollHeight
 
+        console.log(scrollRatio)
         switch (currentSection) {
             case 0:
                 if (scrollRatio < 0.5) {
@@ -464,16 +468,17 @@
                     objs.canvas.style.opacity = calcValues(values.canvasOpacityOut, currentYOffset)
                 }
 
-                if (sequence > 325) {
-                    if (scrollRatio < 0.875) {
+                // if (sequence > 325) {
+                    if (scrollRatio < 0.775) {
                         objs.titleBox.style.opacity = calcValues(values.titleBoxOpacityIn, currentYOffset)
                         objs.titleBox.style.transform = `translate3d(-50%, ${-50 + calcValues(values.titleBoxTranslateYIn, currentYOffset)}%, 0) scale(${350 / 1080})`
+                        objs.canvas.style.transform = `translate3d(-50%, -50%, 0) scale(${calcValues(values.canvasHeightIn, currentYOffset)})`
                     } else {
                         objs.titleBox.style.opacity = calcValues(values.titleBoxOpacityOut, currentYOffset)
                         objs.titleBox.style.transform = `translate3d(-50%, ${-50 + calcValues(values.titleBoxTranslateYOut, currentYOffset)}%, 0) scale(${350 / 1080})`
-                        objs.canvas.style.transform = `translate3d(-50%, ${-50 + calcValues(values.titleBoxTranslateYOut, currentYOffset)}%, 0) scale(${350 / 1080})`
+                        objs.canvas.style.transform = `translate3d(-50%, ${-50 + calcValues(values.titleBoxTranslateYOut, currentYOffset)}%, 0)  scale(${calcValues(values.canvasHeightIn, currentYOffset)})`
                     }
-                }
+                // }
                 break
 
             case 3:
@@ -673,7 +678,7 @@
                     objs.backgroundVideoTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYOut, currentYOffset)}%, 0)`
                 }
 
-                if (scrollRatio < 0.775) {
+                if (scrollRatio < 0.9) {
                     objs.imageCanvas.style.transform = `translate3d(-50%, ${-50 + calcValues(values.backgroundImageTranslateYIn, currentYOffset)}%, 0) scale(${calculateCanvasSacleRatio(objs)})`
                     objs.imageCanvasContext.drawImage(objs.images[0], 0, 0)
                 } else {
@@ -681,7 +686,7 @@
                     objs.imageCanvasContext.drawImage(objs.images[0], 0, 0)
                 }
 
-                if (scrollRatio < 0.925) {
+                if (scrollRatio < 0.75) {
                     objs.flowTitleThree.style.opacity = calcValues(values.flowThreeOpacityIn, currentYOffset)
                     objs.flowTitleThree.style.transform = `translate3d(0, ${calcValues(values.flowThreeTranslateYIn, currentYOffset)}%, 0)`
                     objs.flowFooterThree.style.opacity = calcValues(values.flowThreeOpacityIn, currentYOffset)
