@@ -203,6 +203,7 @@ a {
     opacity: 0;
     z-index: 5;
     position: absolute;
+    text-align: center;
     top: 50%;
     left: 50%;
     width: 1920px;
