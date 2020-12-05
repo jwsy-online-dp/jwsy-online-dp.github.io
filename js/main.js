@@ -35,7 +35,7 @@
         {
             // scroll-section-1
             type: "scroll-anim",
-            height: 5,
+            height: 3,
             scrollHeight: 0,
             objs: {
                 container: document.querySelector("#scroll-section-1"),
@@ -142,7 +142,7 @@
         {
             // scroll-section-5
             type: "scroll-anim",
-            height: 5,
+            height: 3,
             scrollHeight: 0,
             objs: {
                 container: document.querySelector("#scroll-section-5"),
@@ -156,16 +156,17 @@
                 scrollMainMessage: document.querySelector("#scroll-section-6 .scroll-main-message")
             },
             values: {
-                tripleLeftTranslateYIn: [200, 0, {start: 0.1, end: 0.2}],
-                tripleCenterTranslateYIn: [200, 0, {start: 0.3, end: 0.4}],
-                tripleRightTranslateYIn: [200, 0, {start: 0.5, end: 0.6}],
+                tripleLeftTranslateYIn: [200, 0, { start: 0.85, end: 0.95 }],
+                tripleLeftOpacityIn: [0, 1, { start: 0.85, end: 0.95 }],
 
-                tripleLeftOpacityIn: [0, 1, {start: 0.1, end: 0.2}],
-                tripleCenterOpacityIn: [0, 1, {start: 0.3, end: 0.4}],
-                tripleRightOpacityIn: [0, 1, {start: 0.5, end: 0.6}],
+                tripleCenterTranslateYIn: [200, 0, { start: 0.15, end: 0.25 }],
+                tripleRightTranslateYIn: [200, 0, { start: 0.35, end: 0.45 }],
 
-                tripleTranslateYOut: [0, -200, {start: 0.8, end: 0.9}],
-                tripleOpacityOut: [1, 0, {start: 0.8, end: 0.9}],
+                tripleCenterOpacityIn: [0, 1, { start: 0.15, end: 0.25 }],
+                tripleRightOpacityIn: [0, 1, { start: 0.35, end: 0.45 }],
+
+                tripleTranslateYOut: [0, -200, { start: 0.5, end: 0.9 }],
+                tripleOpacityOut: [1, 0, { start: 0.5, end: 0.9 }],
 
                 scrollMainMessageScaleIn: [0.5, 1, { start: 0.8, end: 0.9 }],
             }
@@ -187,7 +188,7 @@
                 backgroundImageStartRatio: 0,
                 backgroundImageFixed: [0, 0, { start: 0, end: 0 }],
 
-                scrollWrapperAreaOneOpacityIn: [0, 1, {start: 0.6, end: 1}]
+                scrollWrapperAreaOneOpacityIn: [0, 1, { start: 0.6, end: 1 }]
             }
         },
         {
@@ -207,11 +208,11 @@
                 scrollWrapperAreaThree: document.querySelector("#scroll-section-7 .scroll-area-wrapper.three")
             },
             values: {
-                scrollWrapperAreaOneOpacityOut: [1, 0, {start: 0, end: 0.2}],
-                scrollWrapperAreaTwoOpacityIn: [0, 1, {start: 0.1, end: 0.35}],
-                scrollWrapperAreaTwoOpacityOut: [1, 0, {start: 0.35, end: 0.62}],
-                scrollWrapperAreaThreeOpacityIn: [0, 1, {start: 0.35, end: 0.62}],
-                scrollWrapperAreaThreeOpacityOut: [1, 0, {start: 0.62, end: 0.92}],
+                scrollWrapperAreaOneOpacityOut: [1, 0, { start: 0, end: 0.2 }],
+                scrollWrapperAreaTwoOpacityIn: [0, 1, { start: 0.1, end: 0.35 }],
+                scrollWrapperAreaTwoOpacityOut: [1, 0, { start: 0.35, end: 0.62 }],
+                scrollWrapperAreaThreeOpacityIn: [0, 1, { start: 0.35, end: 0.62 }],
+                scrollWrapperAreaThreeOpacityOut: [1, 0, { start: 0.62, end: 0.92 }],
             }
         },
         {
@@ -238,25 +239,25 @@
                 images: [],
             },
             values: {
-                canvasTranslateYIn: [200, 0, {start: 0.67, end: 1}],
+                canvasTranslateYIn: [200, 0, { start: 0.67, end: 1 }],
 
-                blendHeight: [0, 0, {start: 0.5, end: 1}],
+                blendHeight: [0, 0, { start: 0.5, end: 1 }],
 
-                screentTitleTranslateYIn: [100, 0, {start: 0.2, end: 0.3}],
-                centerImageLightTranslateYIn: [300, 0, {start: 0.1, end: 0.3}],
-                lightPartOpacityIn: [0, 1, {start: 0.1, end: 0.3}],
+                screentTitleTranslateYIn: [100, 0, { start: 0.2, end: 0.3 }],
+                centerImageLightTranslateYIn: [300, 0, { start: 0.1, end: 0.3 }],
+                lightPartOpacityIn: [0, 1, { start: 0.1, end: 0.3 }],
 
-                screentTitleTranslateYOut: [0, -100, {start: 0.4, end: 0.5}],
-                centerImageLightOpacityOut: [1, 0, {start: 0.4, end: 0.75}],
+                screentTitleTranslateYOut: [0, -100, { start: 0.4, end: 0.5 }],
+                centerImageLightOpacityOut: [1, 0, { start: 0.4, end: 0.75 }],
 
-                screenFooterTranslateYIn: [-30, 0, {start: 0.4, end: 0.75}],
-                screenFooterOpacityIn: [0, 1, {start: 0.4, end: 0.75}],
-                centerImageDarkOpacityIn: [0, 1, {start: 0.4, end: 0.75}],
+                screenFooterTranslateYIn: [-30, 0, { start: 0.4, end: 0.75 }],
+                screenFooterOpacityIn: [0, 1, { start: 0.4, end: 0.75 }],
+                centerImageDarkOpacityIn: [0, 1, { start: 0.4, end: 0.75 }],
 
-                screenFooterTranslateYOut: [0, 80, {start: 0.85, end: 1}],
-                screenFooterOpacityOut: [1, 0, {start: 0.85, end: 1}],
-                centerImageDarkTranslateYOut: [0, -200, {start: 0.85, end: 1}],
-                centerImageDarkOpacityOut: [1, 0, {start: 0.85, end: 1}],
+                screenFooterTranslateYOut: [0, 80, { start: 0.85, end: 1 }],
+                screenFooterOpacityOut: [1, 0, { start: 0.85, end: 1 }],
+                centerImageDarkTranslateYOut: [0, -200, { start: 0.85, end: 1 }],
+                centerImageDarkOpacityOut: [1, 0, { start: 0.85, end: 1 }],
             }
 
         },
@@ -300,7 +301,7 @@
                 flowTextTwoTranslateYOut: [0, -200, { start: 0.55, end: 0.65 }],
                 flowTextTwoOpacityOut: [1, 0, { start: 0.55, end: 0.65 }],
 
-                backgroundImageTranslateYIn: [100, 0, { start: 0.65, end: 0.75 }],
+                backgroundImageTranslateYIn: [100, 0, { start: 0.58, end: 0.75 }],
                 backgroundImageTranslateYOut: [0, -100, { start: 0.8, end: 0.85 }],
 
                 flowThreeTranslateYIn: [50, 0, { start: 0.85, end: 0.9 }],
@@ -348,9 +349,9 @@
 
     function setLayout() {
         document.querySelector("#scroll-section-6 .scroll-background-wrapper").style.height = `${window.innerHeight}px`
-        document.querySelector("#scroll-section-7 .scroll-area-wrapper.one").style.height   = `${window.innerHeight}px`
-        document.querySelector("#scroll-section-7 .scroll-area-wrapper.two").style.height   = `${window.innerHeight}px`
-        document.querySelector("#scroll-section-7 .scroll-area-wrapper.three").style.height   = `${window.innerHeight}px`
+        document.querySelector("#scroll-section-7 .scroll-area-wrapper.one").style.height = `${window.innerHeight}px`
+        document.querySelector("#scroll-section-7 .scroll-area-wrapper.two").style.height = `${window.innerHeight}px`
+        document.querySelector("#scroll-section-7 .scroll-area-wrapper.three").style.height = `${window.innerHeight}px`
 
         for (let i = 0; i < sectionInfo.length; i++) {
             if (sectionInfo[i].type === 'scroll-anim') {
@@ -475,9 +476,6 @@
                 }
                 break
 
-            case 2:
-                break
-
             case 3:
                 if (scrollRatio <= 0.5) {
                     objs.leftMockScreen.style.opacity = calcValues(values.leftMockScreenOpacityIn, currentYOffset)
@@ -531,11 +529,17 @@
                     objs.backgroundVideo.style.transform = `translate3d(0, ${calcValues(values.backgroundVideoTranslateYOut, currentYOffset)}%, 0) scale(${calcValues(values.flowTitleScaleIn, currentYOffset)})`
                 }
 
-                break
-            case 5:
-                if (scrollRatio < 0.75) {
+                if (scrollRatio > 0.8) {
+                    const objs = sectionInfo[5].objs
+                    const values = sectionInfo[5].values
+
                     objs.tripleLeft.style.opacity = calcValues(values.tripleLeftOpacityIn, currentYOffset)
                     objs.tripleLeft.style.transform = `translate3d(0, ${calcValues(values.tripleLeftTranslateYIn, currentYOffset)}%, 0)`
+                }
+                break
+
+            case 5:
+                if (scrollRatio < 0.5) {
                     objs.tripleCenter.style.opacity = calcValues(values.tripleCenterOpacityIn, currentYOffset)
                     objs.tripleCenter.style.transform = `translate3d(0, ${calcValues(values.tripleCenterTranslateYIn, currentYOffset)}%, 0)`
                     objs.tripleRight.style.opacity = calcValues(values.tripleRightOpacityIn, currentYOffset)
@@ -585,7 +589,7 @@
                     const widthRatio = window.innerWidth / objs.canvas.width
                     const heightRatio = window.innerHeight / objs.canvas.height
                     let canvasScaleRatio;
-    
+
                     if (widthRatio <= heightRatio) {
                         // 캔버스보다 브라우저 창이 홀쭉한 경우
                         canvasScaleRatio = heightRatio
@@ -605,21 +609,6 @@
                 break
 
             case 8:
-                console.log(scrollRatio)
-                // 가로/세로 모두 꽉 차게 하기 위해 여기서 세팅(계산 필요)
-                // const widthRatio = window.innerWidth / objs.canvas.width
-                // const heightRatio = window.innerHeight / objs.canvas.height
-                // let canvasScaleRatio;
-
-                // if (widthRatio <= heightRatio) {
-                //     // 캔버스보다 브라우저 창이 홀쭉한 경우
-                //     canvasScaleRatio = heightRatio
-                // } else {
-                //     // 캔버스보다 브라우저 창이 납작한 경우
-                //     canvasScaleRatio = widthRatio
-                // }
-
-                // objs.canvas.style.transform = `translate3d(-50%, -50%, 0) scale(${canvasScaleRatio})`
                 objs.canvas.style.transform = `translate3d(-50%, -50%, 0)`
                 objs.context.drawImage(objs.images[0], 0, 0);
 
