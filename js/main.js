@@ -316,32 +316,22 @@
         },
         {
             // scroll-section-10
-            type: "scroll-anim",
-            height: 2,
+            type: "normal",
+            height: 1,
             scrollHeight: 0,
             objs: {
                 container: document.querySelector("#scroll-section-10"),
-
-                imageCanvas: document.querySelector("#image-canvas-4"),
-                imageCanvasContext: document.querySelector("#image-canvas-4").getContext("2d"),
-
-                imagePaths: [
-                    `./img/010/all_mockup_full.png`
-                ],
-                images: []
             },
             values: {
-                backgroundImageTranslateYIn: [100, 0, { start: 0.1, end: 0.3 }],
-                backgroundImageTranslateYOut: [0, -100, { start: 0.7, end: 0.9 }],
             }
         },
         {
-            // scroll-section-10
-            type: "scroll-anim",
-            height: 5,
+            // scroll-section-11
+            type: "normal",
+            height: 2,
             scrollHeight: 0,
             objs: {
-                container: document.querySelector("#scroll-section-10"),
+                container: document.querySelector("#scroll-section-11"),
 
             },
             values: {
@@ -404,11 +394,6 @@
             let imgElem = new Image()
             imgElem.src = sectionInfo[9].objs.imagePaths[i]
             sectionInfo[9].objs.images.push(imgElem)
-        }
-        for (let i = 0; i < sectionInfo[10].objs.imagePaths.length; i++) {
-            let imgElem = new Image()
-            imgElem.src = sectionInfo[10].objs.imagePaths[i]
-            sectionInfo[10].objs.images.push(imgElem)
         }
     }
 
@@ -705,13 +690,6 @@
                 break
 
             case 10:
-                if (scrollRatio < 0.5) {
-                    objs.imageCanvas.style.transform = `translate3d(-50%, ${-50 + calcValues(values.backgroundImageTranslateYIn, currentYOffset)}%, 0) scale(${calculateCanvasSacleRatio(objs)})`
-                    objs.imageCanvasContext.drawImage(objs.images[0], 0, 0)
-                } else {
-                    objs.imageCanvas.style.transform = `translate3d(-50%, ${-50 + calcValues(values.backgroundImageTranslateYOut, currentYOffset)}%, 0) scale(${calculateCanvasSacleRatio(objs)})`
-                    objs.imageCanvasContext.drawImage(objs.images[0], 0, 0)
-                }
                 break
         }
     }

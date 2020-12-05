@@ -681,6 +681,27 @@ a {
     transform: translateY(-50%);
 }
 
+.last-wrapper {
+    margin-top: 40vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.last-title {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    top: 15vh;
+    font-family: SpoqaHanSans;
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: -2.4px;
+    text-align: center;
+}
+
 body#show-scene-0 #scroll-section-0 .sticky-elem,
 body#show-scene-1 #scroll-section-1 .sticky-elem,
 body#show-scene-2 #scroll-section-2 .sticky-elem,
