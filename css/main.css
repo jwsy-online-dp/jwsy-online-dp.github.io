@@ -162,8 +162,7 @@ a {
 }
 
 #scroll-section-1 .main-message,
-#scroll-section-4 .main-message,
-#scroll-section-6 .main-message {
+#scroll-section-4 .main-message {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -430,8 +429,42 @@ a {
 	color: #000000;
 }
 
-#scroll-section-7 .screen-title {
+.scroll-main-message {
+    font-family: SpoqaHanSans;
+    font-size: 50px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: -1.5px;
+    text-align: center;
+    padding-top: 12vh;
+    padding-bottom: 55vh;
+}
+
+.sticky-background-image {
     position: fixed;
+    top: 0px;
+    left: 0px;
+}
+
+#scroll-section-7 {
+    background-color: white;
+}
+
+#scroll-section-7 .scroll-area-wrapper {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+#scroll-section-7 .scroll-area-wrapper.two, 
+#scroll-section-7 .scroll-area-wrapper.three {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#scroll-section-7 .screen-title {
     top: 10vh;
     font-family: SpoqaHanSans;
     font-size: 40px;
@@ -441,10 +474,16 @@ a {
     line-height: 1.4;
     letter-spacing: -2.4px;
     text-align: center;
+    margin-bottom: 50px;
+}
+
+#scroll-section-7 .screen-body {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 #scroll-section-7 .screen-footer {
-    position: fixed;
     bottom: 8vh;
     font-family: SpoqaHanSans;
     font-size: 24px;
@@ -473,6 +512,37 @@ a {
 }
 
 #scroll-section-7 .flow-text p {
+    font-family: SpoqaHanSans;
+    font-size: 24px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -1.44px;
+    text-align: left;
+}
+
+.scroll-area-flow-text {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 32vh;
+    left: 10vw;
+}
+
+.scroll-area-flow-text strong {
+    font-family: SpoqaHanSans;
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: -2.4px;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.scroll-area-flow-text p {
     font-family: SpoqaHanSans;
     font-size: 24px;
     font-weight: normal;

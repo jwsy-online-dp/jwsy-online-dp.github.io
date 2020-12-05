@@ -152,6 +152,8 @@
                 tripleRight: document.querySelector("#scroll-section-5 .triple-right"),
 
                 tripleWrapper: document.querySelector("#scroll-section-5 .triple-wrapper"),
+
+                scrollMainMessage: document.querySelector("#scroll-section-6 .scroll-main-message")
             },
             values: {
                 tripleLeftTranslateYIn: [200, 0, {start: 0.1, end: 0.2}],
@@ -164,42 +166,29 @@
 
                 tripleTranslateYOut: [0, -200, {start: 0.8, end: 0.9}],
                 tripleOpacityOut: [1, 0, {start: 0.8, end: 0.9}],
+
+                scrollMainMessageScaleIn: [0.5, 1, { start: 0.8, end: 0.9 }],
             }
         },
         {
             // scroll-section-6
-            type: "scroll-anim",
-            height: 5,
+            type: "normal",
+            height: 1,
             scrollHeight: 0,
             objs: {
                 container: document.querySelector("#scroll-section-6"),
 
-                flowTitle: document.querySelector("#scroll-section-6 .flow-title"),
-
-                imageCanvas: document.querySelector("#image-canvas-2"),
-                imageCanvasContext: document.querySelector("#image-canvas-2").getContext("2d"),
-
-                imagePaths: [
-                    `./img/006/background.jpg`
-                ],
-                images: []
+                scrollMainMessage: document.querySelector("#scroll-section-6 .scroll-main-message"),
+                scrollBackgroundImage: document.querySelector("#scroll-section-6 .scroll-background-image"),
             },
             values: {
-                flowTitleOpacityIn: [0, 1, { start: 0, end: 0 }],
-                flowTitleOpacityOut: [1, 0, { start: 0.5, end: 0.5 }],
-
-                flowTitleTranslateYIn: [400, 0, { start: 0, end: 0.3 }],
-                flowTitleTranslateYOut: [0, -400, { start: 0.3, end: 0.5 }],
-
-                flowTitleScaleIn: [0.5, 1, { start: 0, end: 0.3 }],
-
-                backgroundImageTranslateYIn: [100, 0, { start: 0.4, end: 0.5 }],
-                backgroundImageTranslateYOut: [0, -100, { start: 0.6, end: 0.7 }]
+                backgroundImageStartRatio: 0,
+                backgroundImageFixed: [0, 0, { start: 0, end: 0 }],
             }
         },
         {
             // scroll-section-7
-            type: "scroll-anim",
+            type: "normal",
             height: 5,
             scrollHeight: 0,
             objs: {
@@ -222,7 +211,7 @@
         },
         {
             // scroll-section-8
-            type: "scroll-anim",
+            type: "normal",
             height: 5,
             scrollHeight: 0,
             objs: {
@@ -320,17 +309,19 @@
         }
     ]
 
-    function scrollToTop() {
-        sectionInfo[0].objs.textFirst.style.opacity = 1
-        sectionInfo[0].objs.textSecond.style.opacity = 1
-        window.scrollTo(0, 0);
-    }
-
     function setLayout() {
-        // scrollToTop()
+        document.querySelector("#scroll-section-6 .scroll-background-wrapper").style.height = `${window.innerHeight}px`
+        document.querySelector("#scroll-section-7 .scroll-area-wrapper.one").style.height   = `${window.innerHeight}px`
+        document.querySelector("#scroll-section-7 .scroll-area-wrapper.two").style.height   = `${window.innerHeight}px`
+        document.querySelector("#scroll-section-7 .scroll-area-wrapper.three").style.height   = `${window.innerHeight}px`
 
         for (let i = 0; i < sectionInfo.length; i++) {
-            sectionInfo[i].scrollHeight = sectionInfo[i].height * window.innerHeight
+            if (sectionInfo[i].type === 'scroll-anim') {
+                sectionInfo[i].scrollHeight = sectionInfo[i].height * window.innerHeight
+            } else if (sectionInfo[i].type === 'normal') {
+                sectionInfo[i].scrollHeight = sectionInfo[i].objs.container.offsetHeight
+            }
+
             sectionInfo[i].objs.container.style.height = `${sectionInfo[i].scrollHeight}px`
         }
 
@@ -362,11 +353,6 @@
             imgElem = new Image()
             imgElem.src = `./video/001/IMG${1001 + i}.jpg`
             sectionInfo[1].objs.videoImages.push(imgElem)
-        }
-        for (let i = 0; i < sectionInfo[6].objs.imagePaths.length; i++) {
-            let imgElem = new Image()
-            imgElem.src = sectionInfo[6].objs.imagePaths[i]
-            sectionInfo[6].objs.images.push(imgElem)
         }
         for (let i = 0; i < sectionInfo[9].objs.imagePaths.length; i++) {
             let imgElem = new Image()
@@ -516,11 +502,16 @@
                     objs.tripleWrapper.style.opacity = calcValues(values.tripleOpacityOut, currentYOffset)
                     objs.tripleWrapper.style.transform = `translate3d(0, ${calcValues(values.tripleTranslateYOut, currentYOffset)}%, 0)`
                 }
+
+                if (scrollRatio > 0.75) {
+                    objs.scrollMainMessage.style.transform = `scale(${calcValues(values.scrollMainMessageScaleIn, currentYOffset)})`
+                }
+
                 break
 
             case 6:
-                const widthRatio = window.innerWidth / objs.imageCanvas.width
-                const heightRatio = window.innerHeight / objs.imageCanvas.height
+                const widthRatio = window.innerWidth / objs.scrollBackgroundImage.width
+                const heightRatio = window.innerHeight / objs.scrollBackgroundImage.height
                 let canvasScaleRatio;
 
                 if (widthRatio <= heightRatio) {
@@ -529,38 +520,30 @@
                     canvasScaleRatio = widthRatio
                 }
 
-                if (scrollRatio <= 0.3) {
-                    objs.flowTitle.style.opacity = calcValues(values.flowTitleOpacityIn, currentYOffset)
-                    objs.flowTitle.style.transform = `translate3d(0, ${calcValues(values.flowTitleTranslateYIn, currentYOffset)}%, 0) scale(${calcValues(values.flowTitleScaleIn, currentYOffset)})`
-                } else {
-                    objs.flowTitle.style.opacity = calcValues(values.flowTitleOpacityOut, currentYOffset)
-                    objs.flowTitle.style.transform = `translate3d(0, ${calcValues(values.flowTitleTranslateYOut, currentYOffset)}%, 0)`
-                }
 
-                if (scrollRatio >= 0.4 && scrollRatio < 0.55) {
-                    objs.imageCanvas.style.transform = `translate3d(-50%, ${-50 + calcValues(values.backgroundImageTranslateYIn, currentYOffset)}%, 0) scale(${canvasScaleRatio})`
-                    objs.imageCanvasContext.drawImage(objs.images[0], 0, 0)
-                } else if (scrollRatio > 0.55 && scrollRatio <= 0.7) {
-                    objs.imageCanvas.style.transform = `translate3d(-50%, ${-50 + calcValues(values.backgroundImageTranslateYOut, currentYOffset)}%, 0) scale(${canvasScaleRatio})`
-                    objs.imageCanvasContext.drawImage(objs.images[0], 0, 0)
+                if (!values.backgroundImageStartRatio) {
+                    console.log(objs.scrollMainMessage.offsetHeight, objs.container.offsetHeight)
+                    values.backgroundImageStartRatio = objs.scrollMainMessage.offsetHeight / objs.container.offsetHeight
+                    values.backgroundImageFixed[2].start = values.backgroundImageStartRatio
+                    values.backgroundImageFixed[2].end = values.backgroundImageStartRatio + 0.2
                 }
 
                 break
 
             case 7:
-                if (scrollRatio < 0.45) {
-                    objs.flowTextOne.style.opacity = calcValues(values.flowTextOneOpacityIn, currentYOffset)
-                    objs.flowTextOne.style.transform = `translate3d(0, ${calcValues(values.flowTextOneTranslateYIn, currentYOffset)}%, 0)`
-                } else {
-                    objs.flowTextOne.style.opacity = calcValues(values.flowTextOneOpacityOut, currentYOffset)
-                }
+                // if (scrollRatio < 0.45) {
+                //     objs.flowTextOne.style.opacity = calcValues(values.flowTextOneOpacityIn, currentYOffset)
+                //     objs.flowTextOne.style.transform = `translate3d(0, ${calcValues(values.flowTextOneTranslateYIn, currentYOffset)}%, 0)`
+                // } else {
+                //     objs.flowTextOne.style.opacity = calcValues(values.flowTextOneOpacityOut, currentYOffset)
+                // }
 
-                if (scrollRatio < 0.75) {
-                    objs.flowTextTwo.style.opacity = calcValues(values.flowTextTwoOpacityIn, currentYOffset)
-                    objs.flowTextTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYIn, currentYOffset)}%, 0)`
-                } else {
-                    objs.flowTextTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYOut, currentYOffset)}%, 0)`
-                }
+                // if (scrollRatio < 0.75) {
+                //     objs.flowTextTwo.style.opacity = calcValues(values.flowTextTwoOpacityIn, currentYOffset)
+                //     objs.flowTextTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYIn, currentYOffset)}%, 0)`
+                // } else {
+                //     objs.flowTextTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYOut, currentYOffset)}%, 0)`
+                // }
 
                 break
 
