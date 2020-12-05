@@ -147,9 +147,23 @@
             objs: {
                 container: document.querySelector("#scroll-section-5"),
 
+                tripleLeft: document.querySelector("#scroll-section-5 .triple-left"),
+                tripleCenter: document.querySelector("#scroll-section-5 .triple-center"),
+                tripleRight: document.querySelector("#scroll-section-5 .triple-right"),
+
+                tripleWrapper: document.querySelector("#scroll-section-5 .triple-wrapper"),
             },
             values: {
+                tripleLeftTranslateYIn: [200, 0, {start: 0.1, end: 0.2}],
+                tripleCenterTranslateYIn: [200, 0, {start: 0.3, end: 0.4}],
+                tripleRightTranslateYIn: [200, 0, {start: 0.5, end: 0.6}],
 
+                tripleLeftOpacityIn: [0, 1, {start: 0.1, end: 0.2}],
+                tripleCenterOpacityIn: [0, 1, {start: 0.3, end: 0.4}],
+                tripleRightOpacityIn: [0, 1, {start: 0.5, end: 0.6}],
+
+                tripleTranslateYOut: [0, -200, {start: 0.8, end: 0.9}],
+                tripleOpacityOut: [1, 0, {start: 0.8, end: 0.9}],
             }
         },
         {
@@ -491,7 +505,17 @@
 
                 break
             case 5:
-                
+                if (scrollRatio < 0.75) {
+                    objs.tripleLeft.style.opacity = calcValues(values.tripleLeftOpacityIn, currentYOffset)
+                    objs.tripleLeft.style.transform = `translate3d(0, ${calcValues(values.tripleLeftTranslateYIn, currentYOffset)}%, 0)`
+                    objs.tripleCenter.style.opacity = calcValues(values.tripleCenterOpacityIn, currentYOffset)
+                    objs.tripleCenter.style.transform = `translate3d(0, ${calcValues(values.tripleCenterTranslateYIn, currentYOffset)}%, 0)`
+                    objs.tripleRight.style.opacity = calcValues(values.tripleRightOpacityIn, currentYOffset)
+                    objs.tripleRight.style.transform = `translate3d(0, ${calcValues(values.tripleRightTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    objs.tripleWrapper.style.opacity = calcValues(values.tripleOpacityOut, currentYOffset)
+                    objs.tripleWrapper.style.transform = `translate3d(0, ${calcValues(values.tripleTranslateYOut, currentYOffset)}%, 0)`
+                }
                 break
 
             case 6:

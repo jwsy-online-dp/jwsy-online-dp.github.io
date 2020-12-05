@@ -235,6 +235,79 @@ a {
     left: 15vw;
 }
 
+.triple-wrapper {
+    opacity: 0;
+    top: 15vh;
+    position: fixed;
+    padding-left: 120px;
+    padding-right: 120px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.triple-wrapper .triple-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.triple-wrapper .triple-center {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    
+}
+.triple-wrapper .triple-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.triple-wrapper strong {
+    font-family: Volte;
+    font-size: 60px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.17;
+    letter-spacing: -1.8px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.triple-wrapper img {
+    margin-bottom: 77px;
+    width: 225.3px;
+    height: 209.3px;
+}
+
+.triple-wrapper h1 {
+    font-family: SpoqaHanSans;
+    font-size: 40px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: -2.4px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.triple-wrapper p {
+    font-family: SpoqaHanSans;
+    font-size: 20px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.8;
+    letter-spacing: -1px;
+    text-align: center;
+}
+
 .flow-text strong {
     font-family: SpoqaHanSans;
     font-size: 50px;
