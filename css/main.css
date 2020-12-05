@@ -455,7 +455,6 @@ a {
 #scroll-section-7 .scroll-area-wrapper {
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
 }
 
 #scroll-section-7 .scroll-area-wrapper.two, 
