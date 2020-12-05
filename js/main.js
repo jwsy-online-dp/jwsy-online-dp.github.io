@@ -216,15 +216,47 @@
         },
         {
             // scroll-section-8
-            type: "normal",
-            height: 5,
+            type: "scroll-anim",
+            height: 2,
             scrollHeight: 0,
             objs: {
                 container: document.querySelector("#scroll-section-8"),
 
+                canvas: document.querySelector("#background-canvas"),
+                context: document.querySelector("#background-canvas").getContext("2d"),
+
+                screenTitle: document.querySelector("#scroll-section-8 .screen-title"),
+                screenFooter: document.querySelector("#scroll-section-8 .screen-footer"),
+
+                centerImageLight: document.querySelector("#scroll-section-8 .center-fixed-images.light"),
+                centerImageDark: document.querySelector("#scroll-section-8 .center-fixed-images.dark"),
+
+                imagePaths: [
+                    `./img/white.jpg`,
+                    `./img/black.jpg`
+                ],
+                images: [],
             },
             values: {
+                canvasTranslateYIn: [200, 0, {start: 0.67, end: 1}],
 
+                blendHeight: [0, 0, {start: 0.5, end: 1}],
+
+                screentTitleTranslateYIn: [100, 0, {start: 0.2, end: 0.3}],
+                centerImageLightTranslateYIn: [300, 0, {start: 0.1, end: 0.3}],
+                lightPartOpacityIn: [0, 1, {start: 0.1, end: 0.3}],
+
+                screentTitleTranslateYOut: [0, -100, {start: 0.4, end: 0.5}],
+                centerImageLightOpacityOut: [1, 0, {start: 0.4, end: 0.75}],
+
+                screenFooterTranslateYIn: [-30, 0, {start: 0.4, end: 0.75}],
+                screenFooterOpacityIn: [0, 1, {start: 0.4, end: 0.75}],
+                centerImageDarkOpacityIn: [0, 1, {start: 0.4, end: 0.75}],
+
+                screenFooterTranslateYOut: [0, 80, {start: 0.85, end: 1}],
+                screenFooterOpacityOut: [1, 0, {start: 0.85, end: 1}],
+                centerImageDarkTranslateYOut: [0, -200, {start: 0.85, end: 1}],
+                centerImageDarkOpacityOut: [1, 0, {start: 0.85, end: 1}],
             }
 
         },
@@ -359,6 +391,11 @@
             imgElem.src = `./video/001/IMG${1001 + i}.jpg`
             sectionInfo[1].objs.videoImages.push(imgElem)
         }
+        for (let i = 0; i < sectionInfo[8].objs.imagePaths.length; i++) {
+            let imgElem = new Image()
+            imgElem.src = sectionInfo[8].objs.imagePaths[i]
+            sectionInfo[8].objs.images.push(imgElem)
+        }
         for (let i = 0; i < sectionInfo[9].objs.imagePaths.length; i++) {
             let imgElem = new Image()
             imgElem.src = sectionInfo[9].objs.imagePaths[i]
@@ -408,7 +445,7 @@
         switch (currentSection) {
             case 0:
                 if (scrollRatio < 0.5) {
-                    objs.backgroundImageLeft.style.transform = `translate3d(${calcValues(values.backgroundImageLeftTranslateXOut, currentYOffset)}%, 0, 0)`
+                    objs.backgroundImageLeft.style.transform = `translate3d(${calcValues(values.backgroundImageLeftTranslateXOut, currentYOffset)}vh, 0, 0)`
                     objs.backgroundImageRight.style.transform = `translate3d(${calcValues(values.backgroundImageRightTranslateXOut, currentYOffset)}%, 0, 0)`
                     objs.backgroundImageLeft.style.opacity = calcValues(values.backgroundImageOpacityOut, currentYOffset)
                     objs.mainPageTitle.style.opacity = calcValues(values.mainPageTitleOpacityOut, currentYOffset)
@@ -538,6 +575,82 @@
                     objs.scrollWrapperAreaThree.style.opacity = calcValues(values.scrollWrapperAreaThreeOpacityIn, currentYOffset)
                 } else {
                     objs.scrollWrapperAreaThree.style.opacity = calcValues(values.scrollWrapperAreaThreeOpacityOut, currentYOffset)
+                }
+
+                if (scrollRatio > 0.66) {
+                    const objs = sectionInfo[8].objs
+                    const values = sectionInfo[8].values
+
+                    // 가로/세로 모두 꽉 차게 하기 위해 여기서 세팅(계산 필요)
+                    const widthRatio = window.innerWidth / objs.canvas.width
+                    const heightRatio = window.innerHeight / objs.canvas.height
+                    let canvasScaleRatio;
+    
+                    if (widthRatio <= heightRatio) {
+                        // 캔버스보다 브라우저 창이 홀쭉한 경우
+                        canvasScaleRatio = heightRatio
+                    } else {
+                        // 캔버스보다 브라우저 창이 납작한 경우
+                        canvasScaleRatio = widthRatio
+                    }
+
+                    objs.canvas.style.transform = `translate3d(-50%, ${-50 + calcValues(values.canvasTranslateYIn, currentYOffset)}%, 0) scale(${canvasScaleRatio})`
+                    objs.context.drawImage(objs.images[0], 0, 0)
+
+                    objs.canvas.style.display = null
+                } else {
+                    const objs = sectionInfo[8].objs
+                    objs.canvas.style.display = 'none'
+                }
+                break
+
+            case 8:
+                console.log(scrollRatio)
+                // 가로/세로 모두 꽉 차게 하기 위해 여기서 세팅(계산 필요)
+                // const widthRatio = window.innerWidth / objs.canvas.width
+                // const heightRatio = window.innerHeight / objs.canvas.height
+                // let canvasScaleRatio;
+
+                // if (widthRatio <= heightRatio) {
+                //     // 캔버스보다 브라우저 창이 홀쭉한 경우
+                //     canvasScaleRatio = heightRatio
+                // } else {
+                //     // 캔버스보다 브라우저 창이 납작한 경우
+                //     canvasScaleRatio = widthRatio
+                // }
+
+                // objs.canvas.style.transform = `translate3d(-50%, -50%, 0) scale(${canvasScaleRatio})`
+                objs.canvas.style.transform = `translate3d(-50%, -50%, 0)`
+                objs.context.drawImage(objs.images[0], 0, 0);
+
+                values.blendHeight[0] = 0
+                values.blendHeight[1] = objs.canvas.height
+
+                if (scrollRatio > 0.4) {
+                    const blendHeight = calcValues(values.blendHeight, currentYOffset)
+                    objs.context.drawImage(objs.images[1],
+                        0, objs.canvas.height - blendHeight, objs.canvas.width, blendHeight,
+                        0, objs.canvas.height - blendHeight, objs.canvas.width, blendHeight)
+                }
+
+                if (scrollRatio < 0.4) {
+                    objs.screenTitle.style.opacity = calcValues(values.lightPartOpacityIn, currentYOffset)
+                    objs.screenTitle.style.top = `${calcValues(values.screentTitleTranslateYIn, currentYOffset) + 13}vh`
+                    objs.centerImageLight.style.opacity = calcValues(values.lightPartOpacityIn, currentYOffset)
+                    objs.centerImageLight.style.transform = `translate3d(0, ${calcValues(values.centerImageLightTranslateYIn, currentYOffset)}%, 0)`
+                } else {
+                    objs.screenTitle.style.top = `${calcValues(values.screentTitleTranslateYOut, currentYOffset) + 13}vh`
+                    objs.centerImageLight.style.opacity = calcValues(values.centerImageLightOpacityOut, currentYOffset)
+                }
+
+                if (scrollRatio < 0.75) {
+                    objs.screenFooter.style.bottom = `${calcValues(values.screenFooterTranslateYIn, currentYOffset) + 13}vh`
+                    objs.screenFooter.style.opacity = calcValues(values.screenFooterOpacityIn, currentYOffset)
+                    objs.centerImageDark.style.opacity = calcValues(values.centerImageDarkOpacityIn, currentYOffset)
+                } else {
+                    objs.screenFooter.style.bottom = `${calcValues(values.screenFooterTranslateYOut, currentYOffset) + 13}vh`
+                    objs.screenFooter.style.opacity = `${calcValues(values.screenFooterOpacityOut, currentYOffset)}`
+                    objs.centerImageDark.style.transform = `translate3d(0, ${calcValues(values.centerImageDarkTranslateYOut, currentYOffset)}%, 0)`
                 }
 
                 break
