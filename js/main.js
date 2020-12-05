@@ -1,10 +1,13 @@
 (() => {
 
     let yOffset = 0
+    let totalYOffset = 0
     let prevScrollHeight = 0
     let currentSection = 0
     let enterNewScene = false
     let scrollDirectionUp = null
+
+    const indicatorProgress = document.querySelector("#indicator-progress")
 
     const sectionInfo = [
         {
@@ -14,12 +17,19 @@
             scrollHeight: 0,
             objs: {
                 container: document.querySelector("#scroll-section-0"),
-                textFirst: document.querySelector("#scroll-section-0 .dimed-text.first"),
-                textSecond: document.querySelector("#scroll-section-0 .dimed-text.second"),
+
+                backgroundImageRight: document.querySelector("#scroll-section-0 .background-image.right"),
+                backgroundImageLeft: document.querySelector("#scroll-section-0 .background-image.left"),
+
+                mainPageTitle: document.querySelector("#scroll-section-0 .main-page-title"),
+                mainPageFooter: document.querySelector("#scroll-section-0 .main-page-footer"),
             },
             values: {
-                textFirst: [1, 0, { start: 0.1, end: 0.4 }],
-                textSecond: [1, 0, { start: 0.3, end: 0.5 }],
+                backgroundImageRightTranslateXOut: [0, 200, { start: 0.15, end: 0.4 }],
+                backgroundImageLeftTranslateXOut: [0, -200, { start: 0.15, end: 0.4 }],
+                backgroundImageOpacityOut: [0.45, 0, { start: 0.15, end: 0.4 }],
+
+                mainPageTitleOpacityOut: [1, 0, { start: 0.15, end: 0.4 }]
             }
         },
         {
@@ -306,24 +316,24 @@
             values: {
                 flowTextOneTranslateYIn: [200, 0, { start: 0.1, end: 0.2 }],
                 flowTextOneOpacityIn: [0, 1, { start: 0.1, end: 0.2 }],
-                
+
                 flowTextOneTranslateYOut: [0, -200, { start: 0.25, end: 0.35 }],
                 flowTextOneOpacityOut: [1, 0, { start: 0.25, end: 0.35 }],
 
                 flowTextTwoTranslateYIn: [200, 0, { start: 0.4, end: 0.5 }],
                 flowTextTwoOpacityIn: [0, 1, { start: 0.4, end: 0.5 }],
-                
+
                 flowTextTwoTranslateYOut: [0, -200, { start: 0.55, end: 0.65 }],
                 flowTextTwoOpacityOut: [1, 0, { start: 0.55, end: 0.65 }],
 
                 backgroundImageTranslateYIn: [100, 0, { start: 0.65, end: 0.75 }],
                 backgroundImageTranslateYOut: [0, -100, { start: 0.8, end: 0.85 }],
 
-                flowThreeTranslateYIn: [50, 0, {start: 0.85, end: 0.9}],
-                flowThreeOpacityIn: [0, 1, {start: 0.85, end: 0.9}],
+                flowThreeTranslateYIn: [50, 0, { start: 0.85, end: 0.9 }],
+                flowThreeOpacityIn: [0, 1, { start: 0.85, end: 0.9 }],
 
-                flowThreeTranslateYOut: [0, -50, {start: 0.95, end: 1}],
-                flowThreeOpacityOut: [1, 0, {start: 0.95, end: 1}],
+                flowThreeTranslateYOut: [0, -50, { start: 0.95, end: 1 }],
+                flowThreeOpacityOut: [1, 0, { start: 0.95, end: 1 }],
             }
         },
         {
@@ -383,6 +393,10 @@
                 currentScene = i
                 break
             }
+        }
+
+        for (let i = 0; i < sectionInfo.length; i++) {
+            totalYOffset += sectionInfo[i].scrollHeight
         }
 
         document.body.setAttribute('id', `show-scene-${currentSection}`)
@@ -461,9 +475,12 @@
 
         switch (currentSection) {
             case 0:
-                if (scrollRatio <= 0.6) {
-                    objs.textFirst.style.opacity = calcValues(values.textFirst, currentYOffset)
-                    objs.textSecond.style.opacity = calcValues(values.textSecond, currentYOffset)
+                if (scrollRatio < 0.5) {
+                    objs.backgroundImageLeft.style.transform = `translate3d(${calcValues(values.backgroundImageLeftTranslateXOut, currentYOffset)}%, 0, 0)`
+                    objs.backgroundImageRight.style.transform = `translate3d(${calcValues(values.backgroundImageRightTranslateXOut, currentYOffset)}%, 0, 0)`
+                    objs.backgroundImageLeft.style.opacity = calcValues(values.backgroundImageOpacityOut, currentYOffset)
+                    objs.mainPageTitle.style.opacity = calcValues(values.mainPageTitleOpacityOut, currentYOffset)
+                    objs.mainPageFooter.style.opacity = calcValues(values.mainPageTitleOpacityOut, currentYOffset)
                 }
                 break
 
@@ -679,11 +696,10 @@
                 } else {
                     objs.flowTextTwo.style.transform = `translate3d(0, ${calcValues(values.flowTextTwoTranslateYOut, currentYOffset)}%, 0)`
                 }
-            
+
                 break
 
             case 9:
-
                 rangeVideoLoop(0.1, 0.35, objs.backgroundVideoOne, scrollRatio)
                 rangeVideoLoop(0.4, 0.65, objs.backgroundVideoTwo, scrollRatio)
                 rangeVideoLoop(0.85, 1, objs.backgroundVideoThree, scrollRatio)
@@ -754,7 +770,7 @@
         const widthRatio = window.innerWidth / objs.imageCanvas.width
         const heightRatio = window.innerHeight / objs.imageCanvas.height
         let canvasScaleRatio
-        
+
         if (widthRatio <= heightRatio) {
             canvasScaleRatio = heightRatio
         } else {
@@ -810,13 +826,24 @@
         return rv
     }
 
+    function setScrollIndicatorWidth() {
+        indicatorProgress.style.width = `${((yOffset + window.innerHeight) / totalYOffset) * 100}%`
+    }
+
     setCanvasImages()
-    window.addEventListener('load', setLayout)
+    window.addEventListener('load', () => {
+        setLayout()
+        setScrollIndicatorWidth()
+    })
     window.addEventListener('scroll', () => {
         yOffset = window.pageYOffset
         scrollLoop()
+        setScrollIndicatorWidth()
     })
-    window.addEventListener('resize', setLayout)
+    window.addEventListener('resize', () => {
+        setLayout()
+        setScrollIndicatorWidth()
+    })
     window.onscroll = function (e) {
         scrollDirectionUp = this.oldScroll > this.scrollY
         this.oldScroll = this.scrollY
