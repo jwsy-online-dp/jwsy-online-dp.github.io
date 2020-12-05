@@ -376,10 +376,10 @@ a {
 
 .right-mock-screen {
     position: fixed;
-    top: 15vh;
+    top: 0;
     right: 0;
     width: 673px;
-    height: 644px;
+    height: 100%;
 }
 
 .right-mock-screen-video {

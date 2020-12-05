@@ -101,7 +101,7 @@
                 flowTextThreeTranslateYIn: [400, 0, { start: 0.7, end: 0.8 }],
                 flowTextThreeTranslateYOut: [0, -400, { start: 0.8, end: 0.9 }],
 
-                leftMockImageOneOpacityIn: [0, 1, { start: 0.15, end: 0.2 }],
+                leftMockImageOneOpacityIn: [0, 1, { start: 0.0, end: 0.1 }],
                 leftMockImageOneOpacityOut: [1, 0, { start: 0.2, end: 0.3 }],
 
                 leftMockImageTwoOpacityIn: [0, 1, { start: 0.4, end: 0.5 }],
