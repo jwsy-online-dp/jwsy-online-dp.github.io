@@ -333,6 +333,19 @@
             objs: {
                 container: document.querySelector("#scroll-section-11"),
 
+                realLastWrapper: document.querySelector("#scroll-section-11 .real-last-wrapper"),
+            },
+            values: {
+
+            }
+        },
+        {
+            // scroll-section-12
+            type: "normal",
+            height: 1,
+            scrollHeight: 0,
+            objs: {
+                container: document.querySelector("#scroll-section-12"),
             },
             values: {
 
@@ -425,13 +438,14 @@
     }
 
     function playAnimation() {
+        console.log(currentSection)
         const objs = sectionInfo[currentSection].objs
         const values = sectionInfo[currentSection].values
         const currentYOffset = yOffset - prevScrollHeight
         const scrollHeight = sectionInfo[currentSection].scrollHeight
         const scrollRatio = currentYOffset / scrollHeight
 
-        console.log(scrollRatio)
+
         switch (currentSection) {
             case 0:
                 if (scrollRatio < 0.5) {
@@ -635,6 +649,11 @@
                 break
 
             case 9:
+                if (scrollRatio > 0) {
+                    const objs = sectionInfo[8].objs
+                    objs.canvas.style.display = 'none'
+                }
+                
                 rangeVideoLoop(0.1, 0.35, objs.backgroundVideoOne, scrollRatio)
                 rangeVideoLoop(0.4, 0.65, objs.backgroundVideoTwo, scrollRatio)
                 rangeVideoLoop(0.85, 1, objs.backgroundVideoThree, scrollRatio)
@@ -690,6 +709,15 @@
                 break
 
             case 10:
+                if (scrollRatio > 0) {
+                    const objs = sectionInfo[11].objs
+                    const values = sectionInfo[11].values
+                    objs.realLastWrapper.classList.remove('real-last-wrapper-fixed')
+                }
+                break
+
+            case 11:
+                objs.realLastWrapper.classList.add('real-last-wrapper-fixed')
                 break
         }
     }

@@ -158,7 +158,7 @@ a {
 
 .scroll-section {
     /* padding-top: 50vh; */
-    border: 1px solid #ffffff;
+    /* border: 1px solid #ffffff; */
 }
 
 #scroll-section-1 .main-message,
@@ -685,6 +685,23 @@ a {
     margin-top: 40vh;
     display: flex;
     flex-direction: column;
+    margin-bottom: 80px;
+}
+
+.real-last-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.real-last-wrapper-fixed {
+    position: fixed;
+    top: 0;
+}
+
+#scroll-section-12 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .last-title {
