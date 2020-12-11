@@ -6,11 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SPACE</title>
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">  
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
+    <script type="text/javascript">
+        let percentage = 0
+        document.body.style.overflowY = 'hidden'
+    </script>
+    <div id="loading-page" style="position: fixed; width: 100%; height: 100%; background-color: black; z-index: 100; display: flex; flex-direction: column;">
+        <div id="progress-logo" style="width: 100%; display: flex; justify-content: center; align-content: center; margin-top: 356px;">
+            <img src="./svg/SPACE.svg" id="temp-image">
+        </div>
+        <div style="width: 100%; display: flex; justify-content: center; align-content: center; flex-direction: row;">
+            <p id="progress-title">LOADING</p>
+            <p id="progress-percentage">0%</p>
+        </div>
+        <div style="width: 100%; display: flex; justify-content: center; align-content: center; margin-top: 139px;">
+            <img src="./svg/graduationshow.svg">
+        </div>
+    </div>
     <div class="container">
         <nav class="global-nav">
             <div class="global-nav-links">

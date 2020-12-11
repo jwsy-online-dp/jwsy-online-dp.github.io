@@ -35,6 +35,26 @@ p {
 a {
     text-decoration: none;
 }
+#progress-logo {
+    opacity: 0;
+}
+
+#progress-title {
+    margin-right: 38px;
+}
+
+#progress-title,
+#progress-percentage {
+    font-family: Volte;
+    font-size: 20px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: 1.2px;
+    text-align: center;
+    color: #ffffff;
+}
 
 .global-nav {
     position: fixed;

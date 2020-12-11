@@ -794,10 +794,27 @@
         indicatorProgress.style.width = `${((yOffset + window.innerHeight) / totalYOffset) * 100}%`
     }
 
+    function setPercentage() {
+        let timer = null
+        let percentageIncreaser = function() {
+            if (percentage < 100) {
+                percentage += 1
+                document.querySelector("#progress-logo").style.opacity = `${percentage / 100}`
+                document.querySelector("#progress-percentage").innerText = `${percentage}%`
+            } else {
+                clearInterval(timer)
+                document.body.style.overflowY = null
+                document.getElementById("loading-page").style.display = 'none'
+            }
+        }
+        timer = setInterval(percentageIncreaser, 10)
+    }
+
     setCanvasImages()
     window.addEventListener('load', () => {
         setLayout()
         setScrollIndicatorWidth()
+        setPercentage()
     })
     window.addEventListener('scroll', () => {
         yOffset = window.pageYOffset
