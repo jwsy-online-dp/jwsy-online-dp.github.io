@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SPACE</title>
-    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">  
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
@@ -17,7 +17,7 @@
         document.body.style.overflowY = 'hidden';
         (() => {
             let timer = null
-            let percentageIncreaser = function() {
+            let percentageIncreaser = function () {
                 if (percentage < 20) {
                     percentage += 1
                     document.querySelector("#progress-logo").style.opacity = `${percentage / 100}`
@@ -27,8 +27,10 @@
             timer = setInterval(percentageIncreaser, 200)
         })()
     </script>
-    <div id="loading-page" style="position: fixed; width: 100%; height: 100%; background-color: black; z-index: 100; display: flex; flex-direction: column;">
-        <div id="progress-logo" style="width: 100%; display: flex; justify-content: center; align-content: center; margin-top: 356px;">
+    <div id="loading-page"
+        style="position: fixed; width: 100%; height: 100%; background-color: black; z-index: 100; display: flex; flex-direction: column;">
+        <div id="progress-logo"
+            style="width: 100%; display: flex; justify-content: center; align-content: center; margin-top: 356px;">
             <img src="./svg/SPACE.svg" id="temp-image">
         </div>
         <div style="width: 100%; display: flex; justify-content: center; align-content: center; flex-direction: row;">
@@ -108,8 +110,8 @@
             <div class="scroll-elem flow-text flow-right three">
                 <strong>이리 돌리고, 저리 돌리고</strong>
                 <p>
-                    가로 세로 회전으로 부족해서,<br>
-                    Lorem ipsum dolor sit amet.
+                    친구와 톡 할땐 세로로, 영상 볼 때에는 가로로.<br>
+                    매번 돌려쓰느라 번거롭지는 않으셨나요?
                 </p>
             </div>
         </section>
@@ -118,8 +120,8 @@
                 <strong>지금 당신에게 필요한 건?</strong>
             </div>
             <div class="sticky-elem sticky-elem-video">
-                <video class="full-video" id="background-video" src="./video/004/background-video.mp4" muted loop autoplay
-                    width="100%" height="100%"></video>
+                <video class="full-video" id="background-video" src="./video/004/background-video.mp4" muted loop
+                    autoplay width="100%" height="100%"></video>
             </div>
         </section>
         <section class="scroll-section" id="scroll-section-5">
@@ -164,7 +166,7 @@
                 <strong>상황별로 이용하는<br>나만의 맞춤 스페이스</strong>
             </div>
             <div class="scroll-background-wrapper" style="width: 100%; height: 1080px;">
-                <img class="scroll-background-image" src="./img/006/work_mockup.png"/>
+                <img class="scroll-background-image" src="./img/006/work_mockup.png" />
             </div>
             <div style="background-color: white; height: 10vh; width: 100%;">
 
@@ -173,15 +175,18 @@
         <section class="scroll-section" id="scroll-section-7">
             <div class="scroll-area-wrapper one">
                 <div class="screen-title">
-                    <strong>작업 능률을 올려줄<br>업무비서 플러그인과 함께</strong>
+                    <strong>
+                        업무 능률을 향상시켜줄<br>다양한 WORK 플러그인
+                    </strong>
                 </div>
                 <div class="screen-body">
-                    <video id="video-one" src="./video/007/work_1.mp4" style="width: 636px; height: 457px;" muted autoplay loop></video>
+                    <video id="video-one" src="./video/007/work_1.mp4" style="width: 636px; height: 457px;" muted
+                        autoplay loop></video>
                 </div>
                 <div class="screen-footer">
                     <p>
-                        어떤 상황에서도 업무에 집중할 수 있도록 프로젝트를 관리해주고,<br>
-                        업무 앱을 활용한 시간을 측정해주는 Work Tracker 플러그인을 활용해보세요.
+                        책상위에 세워 놓고 팀원, 일정, 프로젝트는 물론 집중력까지 관리하며<br>
+                        업무보조기기로 활용할 수 있어요.
                     </p>
                 </div>
             </div>
@@ -194,7 +199,8 @@
                         확인하고 싶을 때 언제든지 펼쳐보세요.
                     </p>
                 </div>
-                <video id="video-two" src="./video/007/work_2.mp4" style="width: 805px; height: 900px;" muted autoplay loop></video>
+                <video id="video-two" src="./video/007/work_2.mp4" style="width: 805px; height: 900px;" muted autoplay
+                    loop></video>
             </div>
             <div class="scroll-area-wrapper three">
                 <div class="scroll-area-flow-text">
@@ -205,7 +211,8 @@
                         온전히 이용할 수 있어요.
                     </p>
                 </div>
-                <video id="video-three" src="./video/007/work_3.mp4" style="width: 805px; height: 900px;" muted autoplay loop></video>
+                <video id="video-three" src="./video/007/work_3.mp4" style="width: 805px; height: 900px;" muted autoplay
+                    loop></video>
             </div>
         </section>
         <section class="scroll-section" id="scroll-section-8">
@@ -228,16 +235,16 @@
         </section>
         <section class="scroll-section" id="scroll-section-9">
             <div class="sticky-elem sticky-elem-video" style="padding-left: 60%;">
-                <video class="full-video one" id="background-video" src="./video/009/chill_motion_1_mockup.mp4" muted loop
-                    width="100%" height="100%" style=" opacity: 0;"></video>
+                <video class="full-video one" id="background-video" src="./video/009/chill_motion_1_mockup.mp4" muted
+                    loop width="100%" height="100%" style=" opacity: 0;"></video>
             </div>
             <div class="sticky-elem sticky-elem-video" style="padding-left: 60%;">
-                <video class="full-video two" id="background-video" src="./video/009/chill_motion_2_mockup.mp4" muted loop
-                    width="100%" height="100%" style=" opacity: 0;"></video>
+                <video class="full-video two" id="background-video" src="./video/009/chill_motion_2_mockup.mp4" muted
+                    loop width="100%" height="100%" style=" opacity: 0;"></video>
             </div>
             <div class="sticky-elem sticky-elem-video">
-                <video class="full-video three" id="background-video" src="./video/009/chill_motion_3_mockup.mp4" muted loop
-                    width="100%" height="100%" style=" opacity: 0;"></video>
+                <video class="full-video three" id="background-video" src="./video/009/chill_motion_3_mockup.mp4" muted
+                    loop width="100%" height="100%" style=" opacity: 0;"></video>
             </div>
             <div class="scroll-elem flow-text flow-left one">
                 <strong>미러 윈도우로<br>동시에 즐기는 스페이스</strong>
