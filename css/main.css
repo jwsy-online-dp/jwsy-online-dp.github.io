@@ -731,6 +731,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .last-title {
